@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title>断点下划线</title>
+	</head>
+
+	<body>
+		<!--
+        	为表格列的底部下划线指定一定高度的背景色后
+        	为其指定右边框线为有宽度白色实现
+        -->
+		<style>
+			.rowborder td{
+				background-color: #b2d1ff;
+				border-right:solid 10px #FFFFFF;
+				height: 3px;
+			}
+			table{
+				width:100%;
+			}
+			table td{
+				text-align: center;
+			}
+		</style>
+		<table>
+			<tr>
+				<td>商品</td>
+				<td>数量</td>
+				<td>价格</td>
+				<td>小记</td>
+			</tr>
+			<tr class="rowborder">
+				<td></td>
+				<td></td>
+				<td></td>
+				<td></td>
+			</tr>
+		</table>
+	</body>
+
+</html>

@@ -1,0 +1,47 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN"
+"http://www.w3.org/TR/html4/strict.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
+
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+		<title>Css层叠性测试</title>
+	</head>
+	<style type="text/css">
+		/*三种样式同时作用于p，最后显示为红色。具体采用哪个样式需要根据权重决定
+		 分别数每个样式的id选择器、类选择器、标签选择器的数量,记为a,b,c
+		 然后依次比较各个样式的id选择器、类选择器、标签选择器数量，数大的优先级高
+		*/
+		#box1 .hezi2 p {/*id选择器数=1，类选择器数=1，标签选择器数=1，记作：1,1,1*/		
+			color: red;/*id选择器数与绿色样式相同，但类选择器数大于绿色样式，因此红色优先级最高*/
+		}
+		
+		div div #box3 p {/*id选择器数=1，类选择器数=0，标签选择器数=3，记作：1,0,3*/	
+			color: green;
+		}
+		/*id选择器数=0，类选择器数=3，标签选择器数=4，记作：0,3,4 id选择器数为0，优先级最低*/	
+		div.hezi1 div.hezi2 div.hezi3 p{
+			color: blue;
+		}
+		/*在开始数权重之前一定要确定选中了文字所在的最内层标签，
+		 * 如果不能直接选中某个元素，通过继承性影响的话，那么权重是0。这里没有选中p所以权重是0*/
+		div.hezi1 div.hezi2 div.hezi3 {
+			color: gray;
+		}
+/*权重问题总结：
+1） 先看有没有选中，如果选中了，那么以（id数，类数，标签数）来计权重。谁大听谁的。如果都一样，以后写的为准。
+2） 如果没有选中，那么权重是0。如果大家都是0，就近原则，描述路径距离该标签近者被选用。*/
+	</style>
+
+	<body>
+		<div class="hezi1" id="box1">
+			<div class="hezi2" id="box2">
+				<div class="hezi3" id="box3">
+					<p>Css层叠性测试,猜猜我是什么颜色？</p>
+				</div>
+			</div>
+		</div>
+
+	</body>
+
+</html>
