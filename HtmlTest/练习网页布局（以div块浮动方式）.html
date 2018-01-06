@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>网页布局练习</title>
+    <style type="text/css">
+        /*全局样式清零*/
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        /*头部样式*/
+        .header {
+            height: 103px;
+            width: 970px;
+            /*添加背景色方便调试，调试完成后删除*/
+            /*background-color: yellow;*/
+            /*让头部居中*/
+            margin: 0 auto;
+        }
+
+        /*为了表示选择器的层次，这里写上.header .logo，下同理*/
+        .header .logo {
+            float: left;
+            width: 277px;
+            height: 103px;
+            background-color: red;
+        }
+
+        .header .language {
+            width: 137px;
+            height: 49px;
+            background-color: green;
+            float: right;
+        }
+
+        .header .nav {
+            width: 679px;
+            height: 46px;
+            margin-top: 8px;
+            float: right;
+            background-color: green;
+        }
+
+        /*中间内容样式*/
+        .content {
+            width: 970px;
+            height: 435px;
+            /*居中*/
+            margin: 0 auto;
+            margin-top: 10px;
+        }
+
+        .content .banner {
+            float: left;
+            width: 310px;
+            height: 435px;
+            background-color: gold;
+            margin-right: 10px;
+        }
+
+        .content .rightPart {
+            float: left;
+            width: 650px;
+            height: 435px;
+        }
+
+        /*进一步拆分中间部分的右侧部分为上main和下links两部分*/
+        .content .rightPart .main {
+            width: 650px;
+            height: 400px;
+            margin-bottom: 10px;
+        }
+
+        .content .rightPart .links {
+            width: 650px;
+            height: 25px;
+            background-color: greenyellow;
+        }
+
+        /*对右侧部分为上main再分为左右两部分新闻news和热图hotpic*/
+        /*想要两个盒子（如div）并排就一定要浮动。如果不需要两个div在同一排可以不用。
+        因此这里拆分出的左右两个div需要并排，要使用浮动
+        */
+        .content .rightPart .main .news {
+            width: 450px;
+            height: 400px;
+            float: left;
+            margin-right: 10px;
+        }
+
+        .content .rightPart .main .hotpic {
+            width: 190px;
+            height: 400px;
+            float: left;
+            background-color: purple;
+        }
+
+        /*想要两个盒子（如div）并排就一定要浮动。如果不需要两个div在同一排可以不用。*/
+        .content .rightPart .main .news .news1 {
+            width: 450px;
+            height: 240px;
+            background-color: skyblue;
+            margin-bottom: 10px;
+        }
+
+        .content .rightPart .main .news .news2 {
+            width: 450px;
+            height: 110px;
+            background-color: skyblue;
+            margin-bottom: 10px;
+        }
+
+        .content .rightPart .main .news .news3 {
+            width: 450px;
+            height: 30px;
+            background-color: skyblue;
+        }
+        /*网页底部模块*/
+        .footer{
+            width:970px;
+            height:35px;
+            background-color:sienna;
+            margin: 0 auto;
+        }
+    </style>
+</head>
+<body>
+<!--网页头部,包含三个子div:logo、语言选项、导航条-->
+<div class="header">
+    <div class="logo">公司图标</div>
+    <div class="language">语言选项</div>
+    <div class="nav">导航条</div>
+</div>
+<!--网页中部:分为左侧大广告div整体和右侧信息div块-->
+<div class="content">
+    <div class="banner">大广告</div>
+    <!--对右侧信息div块，再次拆分为上下两部分,不要想着一次性拆分6部分-->
+    <div class="rightPart">
+        <!--上方的主要板块，又进一步分为新闻和图文热点的左右两部分-->
+        <div class="main">
+
+            <div class="news">
+                <!--网页中部的最后依次拆分：将新闻分为上中下三部分div，没有并行不需使用浮动-->
+                <div class="news1">新闻一</div>
+                <div class="news2">新闻二</div>
+                <div class="news3">新闻三</div>
+            </div>
+            <div class="hotpic">热图新闻</div>
+        </div>
+        <!--下方的友情链接部分-->
+        <div class="links">友情链接部分</div>
+    </div>
+</div>
+<!--网页底部模块-->
+<div class="footer">网页底部模块</div>
+</body>
+</html>
