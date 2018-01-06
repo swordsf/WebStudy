@@ -6,19 +6,31 @@
 </head>
 <body>
 <style type="text/css">
-    .box1{
-        width:300px;
+    .box1 {
+        width: 300px;
         height: 400px;
         background-color: yellowgreen;
+        /*box1设置了左浮动脱离了文档流，box2没有浮动，所以box2就是现在标准文档流中的第一个盒子
+        会渲染在页面左上方*/
         float: left;
     }
-    .box2{
+
+    .box2 {
         width: 400px;
         height: 600px;
         background-color: skyblue;
     }
+
+    .span1 {
+        width:200px;
+        height:200px;
+        background-color: orange;
+        /*一旦一个元素浮动了，那么，将能够并排了，并且能够设置宽高了。无论它原来是个div还是个span。*/
+        float: left;
+    }
 </style>
 <div class="box1">左浮动div</div>
 <div class="box2">左浮动div2</div>
+<span class="span1">我是一个span</span>
 </body>
 </html>
