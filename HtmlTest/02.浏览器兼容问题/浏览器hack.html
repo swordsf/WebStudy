@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <!--hack就是“黑客”，就是使用浏览器提供的后门，针对某一种浏览器做兼容。
+    IE6留了一个后门，就是只要给css属性之前，加上下划线，这个属性就是IE6认识的专有属性。
+    高级浏览器不认识这个属性不会渲染，下划线是IE6专有符号，只有IE6能识别
+-->
+    <style type="text/css">
+        .div1{
+            border: 1px solid red;
+            _background-color: red;
+            /*第一：针对IE6解决微型盒子问题*/
+            height:10px;
+            /*为IE6写的*/
+            _font-size: 0;
+            /*第二：IE6不支持用overflow:hidden;来清除浮动的(但支持溢出隐藏功能)*/
+            /*解决方法，以毒攻毒。追加一条_zoom:1;*/
+            /*完整写法：*/
+            overflow: hidden;
+            _zoom:1;
+            /*刚才学习了两个IE6的兼容问题，这两个IE6的兼容问题，都是通过多写一条hack来解决的。
+            这个我们称为伴生属性：_zoom:1; _font-size: 0px;*/
+
+        }
+    </style>
+</head>
+
+<body>
+    <div class="div1"></div>
+    <div class="div2"></div>
+</body>
+</html>

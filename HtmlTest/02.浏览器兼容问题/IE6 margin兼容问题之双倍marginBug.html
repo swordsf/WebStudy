@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style type="text/css">
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        ul {
+            list-style: none;
+            height: 100px;
+            border: 1px solid red;
+        }
+
+        li {
+            width: 120px;
+            background-color: gold;
+            height: 40px;
+            /*在IE6当出现连续浮动的元素，携带和浮动方向相同的margin时，队首的元素，会双倍marign。
+            IE6中队首li的margin-left会变成40
+            */
+            margin-left: 40px;
+            float: left;
+            /*解决方法一：
+            使margin的方向和浮动的方向相反:
+            此处大家都左浮动，那么就使用
+            margin-right:40px
+            队首li没有间距，在ul的样式中增加padding-left=40px即可
+            margin这个属性，本质上描述的是兄弟和兄弟之间的距离； 最好不要用这个marign表达父子之间的距离。
+            所以，描述父子之间的距离我们一定要善于使用父亲的padding，而不是儿子的margin。
+            */
+            /*解决方法二：（没必要，别惯着这个IE6）
+          单独给队首的元素，写一个一半的margin
+          <li class="no1"></li>
+            1ul li.no1{
+            _margin-left:20px;
+            }
+            */
+        }
+    </style>
+</head>
+<body>
+<ul>
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+</ul>
+</body>
+</html>

@@ -26,27 +26,27 @@
 </head>
 <body>
 <div class="div1">
-    <ui>
+    <ul>
         <li>HTML</li>
         <li>CSS</li>
         <li>JS</li>
         <li>HTML5</li>
         <li>设计模式</li>
-    </ui>
+    </ul>
 </div>
 <!--在两部分浮动元素中间，建一个墙。隔开两部分浮动，让后面的浮动元素，不去追前面的浮动元素。-->
 <!--墙用自己的身体当做了间隙。-->
 <!--在两个浮动div之间插入一个空的并且clear：both的div作为一堵‘墙’,但是此时margin仍然失效。
     不过我们可以再为这堵墙添加一个.h10样式，为其设置height=10px的高，用墙做出上下两个浮动div之间的
-    margin效果
+    margin效果（注意隔墙法要考虑IE6兼容问题还要加入一句_font-size=10px,详见浏览器兼容问题下的浏览器hack.html）
 -->
 <div class="cl h10"></div>
 <div class="div2">
-    <ui>
+    <ul>
         <li>学习方法</li>
         <li>英语水平</li>
         <li>面试技巧</li>
-    </ui>
+    </ul>
 </div>
 </body>
 </html>
