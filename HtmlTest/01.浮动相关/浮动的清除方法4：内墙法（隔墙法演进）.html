@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <style type="text/css">
+        *{
+            margin:0;
+            padding:0;
+        }
+        li {
+            background-color: gold;
+            width: 120px;
+            height: 40px;
+            text-align: center;
+            float: left;
+        }
+
+        .cl {
+            clear: both;
+            /*但是此时margin仍然失效*/
+            margin-top: 20px;
+        }
+
+        /*这类通用样式的赋值属于公共类，共用*/
+        .h10 {
+            height: 10px;
+        }
+        .div1{
+            background-color: green;
+        }
+        .div2{
+            background-color: purple;
+        }
+    </style>
+</head>
+<body>
+<div class="div1">
+    <ui>
+        <li>HTML</li>
+        <li>CSS</li>
+        <li>JS</li>
+        <li>HTML5</li>
+        <li>设计模式</li>
+        <!--我们发现，隔墙法好用，但是第一个div，还是没有高度。如果我们现在想让第一个div，
+        自动的根据自己的儿子，撑出高度，我们就要想一些“小伎俩”，“奇淫技巧”。
+        内墙法：将墙div修在第一个div的内部
+        内墙法的优点就是，不仅仅能够让后部分的li不去追前部分的li了，并且能把第一个div撑出高度。
+        这样，第一个div的背景、边框就能够根据li的高度来撑开了（height此时=50px，而div2height仍=0
+        因为div2中的li都是浮动的，脱标了就不能把一个容器撑出高度了）。
+        -->
+        <div class="cl h10"></div>
+    </ui>
+</div>
+<div class="div2">
+    <ui>
+        <li>学习方法</li>
+        <li>英语水平</li>
+        <li>面试技巧</li>
+    </ui>
+</div>
+</body>
+</html>

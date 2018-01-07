@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>浮动的清除方法2：clearboth</title>
+    <style type="text/css">
+        li{
+            background-color: gold;
+            width: 120px;
+            height:40px;
+            text-align: center;
+            float: left;
+        }
+        .div2{
+            /*注意是要为后面的div2添加clear: both;（常用）或者clear: left;
+            来清除div2块的左右浮动对
+            clear就是清除，both指的是左浮动、右浮动都要清除。意思就是：清除别人对我的影响,
+            表示自己的内部元素，不受其他盒子的影响。。
+            */
+            clear: both;
+            /*这种方法有一个非常大的、致命的问题，margin失效了。*/
+            margin-top:10px;
+        }
+        .div1{
+            /*这种方法有一个非常大的、致命的问题，margin失效了。*/
+            margin-bottom:10px;
+        }
+    </style>
+</head>
+<body>
+<div class="div1">
+    <ui>
+        <li>HTML</li>
+        <li>CSS</li>
+        <li>JS</li>
+        <li>HTML5</li>
+        <li>设计模式</li>
+    </ui>
+</div>
+<div class="div2">
+    <ui>
+        <li>学习方法</li>
+        <li>英语水平</li>
+        <li>面试技巧</li>
+    </ui>
+</div>
+</body>
+</html>

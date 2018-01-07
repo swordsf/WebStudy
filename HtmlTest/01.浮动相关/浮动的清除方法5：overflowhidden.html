@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <style type="text/css">
+        *{
+            margin:0;
+            padding:0;
+        }
+        li {
+            background-color: gold;
+            width: 120px;
+            height: 40px;
+            text-align: center;
+            float: left;
+        }
+        /*<一个父亲不能被自己浮动的儿子，撑出高度。但是，只要给父亲加上overflow:hidden;
+         那么，父亲就能被儿子撑出高了。这是一个偏方。在li的左右浮动有问题时很好用：看清除浮动小例子
+         这个属性的本意，就是将所有溢出盒子的内容，隐藏掉。但是，我们发现这个东西能够用于浮动的清除。*/
+        .div1{
+            overflow: hidden;
+            background-color: green;
+            /*并且,overflow:hidden;能够让margin生效。*/
+            margin-bottom: 10px;
+        }
+        .div2{
+            background-color: purple;
+        }
+    </style>
+</head>
+<body>
+<div class="div1">
+    <ui>
+        <li>HTML</li>
+        <li>CSS</li>
+        <li>JS</li>
+        <li>HTML5</li>
+        <li>设计模式</li>
+    </ui>
+</div>
+<div class="div2">
+    <ui>
+        <li>学习方法</li>
+        <li>英语水平</li>
+        <li>面试技巧</li>
+    </ui>
+</div>
+</body>
+</html>

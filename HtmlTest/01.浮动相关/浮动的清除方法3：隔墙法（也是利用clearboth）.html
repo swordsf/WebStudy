@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <style type="text/css">
+        li {
+            background-color: gold;
+            width: 120px;
+            height: 40px;
+            text-align: center;
+            float: left;
+        }
+
+        .cl {
+            clear: both;
+            /*但是此时margin仍然失效*/
+            margin-top: 20px;
+        }
+        /*这类通用样式的赋值属于公共类，共用*/
+        .h10{
+            height: 10px;
+        }
+
+    </style>
+</head>
+<body>
+<div class="div1">
+    <ui>
+        <li>HTML</li>
+        <li>CSS</li>
+        <li>JS</li>
+        <li>HTML5</li>
+        <li>设计模式</li>
+    </ui>
+</div>
+<!--在两部分浮动元素中间，建一个墙。隔开两部分浮动，让后面的浮动元素，不去追前面的浮动元素。-->
+<!--墙用自己的身体当做了间隙。-->
+<!--在两个浮动div之间插入一个空的并且clear：both的div作为一堵‘墙’,但是此时margin仍然失效。
+    不过我们可以再为这堵墙添加一个.h10样式，为其设置height=10px的高，用墙做出上下两个浮动div之间的
+    margin效果
+-->
+<div class="cl h10"></div>
+<div class="div2">
+    <ui>
+        <li>学习方法</li>
+        <li>英语水平</li>
+        <li>面试技巧</li>
+    </ui>
+</div>
+</body>
+</html>

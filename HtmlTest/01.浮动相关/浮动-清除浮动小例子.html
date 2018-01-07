@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style type="text/css">
+        * {
+            margin: 0;
+            padding: 0;
+        }
+        .news {
+            border: 1px solid red;
+            width: 400px;
+            height: 100px;
+            /*让列表向中间挪一些*/
+            margin: 100px;
+        }
+        .news ul {
+            /*去掉列表的小圆点*/
+            list-style: none;
+        }
+
+        .news ul li {
+            /*为列表子项添加虚下划线*/
+            border-bottom: 1px dashed gray;
+            /*解决方法1：给span的容器li增加一个height或者line-height，但是一般不采用添加行高的方法*/
+            /*height:20px;*/
+            /*之前学的方法中clear:both会丢失margin，不用*/
+            /*ul内只可以放li标签，因此放div的隔墙法不行，可以以一个li标签做墙，浪费一个标签。
+            内墙法在li内放一个div可以，但是兴师动众。（隔墙法一般用在语义比较大的地方，比如写完header写content部分）
+            最好的办法，为li增加overflow：hidden,加上即可*/
+            overflow: hidden;
+        }
+        /*养成CSS样式全路径规范，从外层样式写到深处*/
+        .news ul li span.title {
+            float: left;
+        }
+
+        .news ul li span.date {
+            float: right;
+        }
+
+
+
+    </style>
+
+</head>
+<body>
+<div class="news">
+    <ul>
+        <!--出现这种问题本质是因为span的容器li没高。要解决li的隔断浮动的作用
+        标题2的左浮动没有靠在自己的li上，标题2的li会去追标题1的左浮动li去了，标题3追标题2...-->
+        <!--同理时间2的右浮动没有靠在自己的li上，去追时间1的li了，时间3去追时间2...-->
+        <li><span class="title">标题1</span><span class="date">时间1</span></li>
+        <li><span class="title">标题2</span><span class="date">时间2</span></li>
+        <li><span class="title">标题3</span><span class="date">时间3</span></li>
+
+    </ul>
+</div>
+
+</body>
+</html>
