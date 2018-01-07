@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>浮动的清除</title>
+    <style>
+        li {
+            float: left;
+            height:40px;
+            background-color: gold;
+        }
+
+        /*清除浮动方法1：给浮动的元素的祖先元素加高度，祖先高度要>=后代的高度，否则也不行。
+        如果一个元素要浮动，那么它的祖先元素一定要有高度。高度的盒子，才能关住浮动。*/
+        .div1 {
+            height: 50px;
+        }
+
+        .div2 {
+            height: 50px;
+        }
+    </style>
+</head>
+<body>
+<!--两个div，div身上没有任何属性。每个div中都有li，这些li都是浮动的。
+我们本以为这些li，会分为两排，但是，第二组中的第1个li，去贴靠第一组中的最后一个li了。
+原因就是因为div没有高度，不能给自己浮动的孩子们，一个容器。
+但是工作中很少使用这种方法，因为网页制作中height很少出现，因为能被内容撑高，
+清除浮动方法1：给浮动的元素的祖先元素加高度，高度要>=后代的高度。
+-->
+<div class="div1">
+    <ui>
+        <li>HTML</li>
+        <li>CSS</li>
+        <li>JS</li>
+        <li>HTML5</li>
+        <li>设计模式</li>
+    </ui>
+</div>
+<div class="div2">
+    <ui>
+        <li>学习方法</li>
+        <li>英语水平</li>
+        <li>面试技巧</li>
+    </ui>
+</div>
+</body>
+</html>
