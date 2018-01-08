@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>从精灵图中取出字母输出单词</title>
+</head>
+<body>
+<style type="text/css">
+    * {
+        margin: 0;
+        padding: 0;
+    }
+/*交集选择器*/
+    div.s {
+        /*很简单：在Firework中切片出想要的字母部分，切片的宽和高就是此盒子的width和height
+        切片的x和y加上负号就是背景定位background-position的取值
+        但是要注意在firework中精灵图要保证在firework界面的左上角，只要打开firework将图片拖进去不乱拖动图片
+        位置截取到的数据就是准确的（可以在软件图层中锁定该图）
+        */
+        width:54px;
+        height:86px;
+        background-repeat: no-repeat;
+        background-image: url("../img/zimubiao.jpg");
+        background-position: -133px -192px;
+        float: left;
+    }
+    div.u{
+        width:65px;
+        height:74px;
+        background-image: url("../img/zimubiao.jpg");
+        background-position: -250px -206px;
+        float: left;
+    }
+    div.n{
+        width:63px;
+        height:77px;
+        background-image: url("../img/zimubiao.jpg");
+        background-position: -298px -103px;
+        float: left;
+    }
+</style>
+</body>
+<div class="s"></div>
+<div class="u"></div>
+<div class="n"></div>
+</html>

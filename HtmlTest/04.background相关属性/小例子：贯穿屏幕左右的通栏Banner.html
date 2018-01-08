@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style type="text/css">
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        .banner {
+            /*不写宽，直接为父亲的100%*/
+            /*直接写高=图片实际的高*/
+            height: 465px;
+            border: 1px solid red;
+            /*使用背景图片插入，这样不会出现滚动条的原因是background-image溢出就溢出了
+            设置位置中左右居中，上下居上*/
+            background-image: url("../img/banner.jpg");
+            background-repeat: no-repeat;
+            background-position: center top;
+        }
+    </style>
+</head>
+<body>
+<!--通栏的特点是：无论用户的浏览器是大是小，它看起来一定是贯穿屏幕左右的通栏
+设计师会给我们一张很大的图片，如果直接插入img到网页会出现横向滚动条，不要使用<img>。
+使用背景图来实现
+-->
+<div class="banner"></div>
+</body>
+</html>
