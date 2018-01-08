@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>博雅互动首页练习</title>
+    <!--1.首先将设计图导入Firework中锁住再根据设计图进行编码-->
+    <!--2.在FW中CARL+ALT+R按出标尺然后拖拽竖直的两个标尺测量版心的大小（版心即网页中间
+    居中部分内容的宽=1000px，并不是指通版banner和上下导航之类100%的宽度）-->
+    <!--3.在导航栏下方拉一个标尺，按住shift测得导航栏的高height=58px,导航背景色如不是图片可在FW中用吸管取出颜色-->
+</head>
+<style type="text/css">
+    * {
+        margin: 0;
+        padding: 0;
+    }
+
+    /*设置通用字体、字号*/
+    body {
+        font-family: "微软雅黑", "宋体";
+        height: 8888px;
+    }
+
+    /*公有-清除浮动*/
+    .cl {
+        clear: both;
+    }
+
+    .inner_c {
+        width: 1000px;
+        /*居中*/
+        margin: 0 auto;
+    }
+
+    .header {
+        height: 58px;
+        /*颜色在FW中用吸管从设计图中取，导航中的logo图片也从设计图中切片，注意顶着左侧版心边界切，这样一会不用加padding*/
+        background-color: #191D3A;
+    }
+
+    .header .logo {
+        float: left;
+        padding-right: 39px;
+        width: 174px;
+        height: 58px;
+    }
+
+    .header .nav {
+        float: left;
+        /*background-color: orange;*/
+    }
+
+    .header .nav ul {
+        list-style: none;
+    }
+
+    .header .nav ul li {
+        float: left;
+        width: 101px;
+        height: 58px;
+        text-align: center;
+        line-height: 58px;
+        /*每个列加边线*/
+        border-left: 1px solid #252947;
+    }
+
+    .header .nav ul li.last {
+        /*最后一个列项没有右边距，单独加一个*/
+        border-right: 1px solid #252947;
+    }
+
+    .header .nav ul li.current a {
+        /*给选中的导航列添加高亮*/
+        background-color: #252947;
+        color: #E2E4ED;
+    }
+
+    .header .nav ul li a {
+        /*超链接普通状态和点击后状态设置*/
+        display: block;
+        /*让超链接与li有相同的宽高，这样用户点起来整个li都是超链接范围*/
+        width: 100px;
+        height: 58px;
+        text-decoration: none;
+        /*要尊重设计师的配色，看起来是白色其实不是，要取色器取色*/
+        color: #818496;
+        font-size: 14px;
+
+    }
+
+    /*超链接滑过状态伪类设置*/
+    .header .nav ul li a:hover {
+        text-decoration: underline;
+        background-color: #252947;
+        color: #E2E4ED;
+    }
+
+    .header .jrwm {
+        float: left;
+        /*“加入我们”超链接块的父容器就是为了将该链接块挤到正确的位置上*/
+        /*具体padding尺寸也要在FW中精确取*/
+        padding-top: 12px;
+        padding-left: 48px;
+    }
+
+    .header .jrwm a {
+        /*“加入我们”超链接块*/
+        display: block;
+        /*块的宽、高、背景色、边框粗细颜色、字体颜色大小等等都从设计图中切片取！*/
+        width: 100px;
+        height: 30px;
+        background-color: #38B774;
+        float: left;
+        /*水平居中*/
+        text-align: center;
+        /*垂直居中*/
+        line-height: 30px;
+        /*取消超链接下划线*/
+        text-decoration: none;
+        /*字体颜色*/
+        color: #7CF7AF;
+        font-size: 14px;
+        /*边框*/
+        border: 1px solid #3ACA7A;
+        /*IE8开始兼容，CSS3圆角边框*/
+        /*像素越大边角越圆滑*/
+        border-radius: 4px;
+    }
+
+    .header .jrwm a:hover {
+        /*滑过超链接快，让其背景色稍微变深*/
+        background-color: #48C784;
+    }
+
+    /*导航条下的Banner通版*/
+    .banner {
+        /*宽为父类的宽度100%*/
+        /*高为图片实际高度*/
+        height: 465px;
+        background: url("images/banner.jpg") no-repeat center top;
+    }
+
+    /*中间部分的样式*/
+    .content {
+        /*padding值等依然从设计图中切图*/
+        padding-top: 50px;
+    }
+
+    .content .product {
+        /*从设计图的padding-top的下边框量到此模块的底边*/
+        height: 229px;
+        border-bottom: 1px solid #DBE1E7;
+        /*标尺量得四个产品展示子块宽218（最后一个子块为217），间距43
+        218*3+217+43*3=1000
+        */
+    }
+
+    .content .product ul {
+        list-style: none;
+    }
+
+    .content .product ul li {
+        float: left;
+        width: 218px;
+        height: 229px;
+        /*先用染色占位,写完注释或删除掉*/
+        /*background-color: orange;*/
+        /*左浮动就用margin-right，为最后一个li单独写个样式*/
+        margin-right: 43px;
+    }
+
+    /*为最后一个li单独写个交集选择器，覆盖↑的margin-right*/
+    .content .product ul li.last {
+        margin-right: 0;
+        /*最后一个块宽度为217，218放不下就会换行*/
+        width: 217px;
+    }
+    .content .product ul li p.pro_image img{
+        /*小技巧：设置图片宽度为父亲的100%则约束了图片的大小*/
+        width: 100%;
+        /*高不写也可以*/
+        height:130px;
+    }
+    .content .product ul li h3{
+        /*居中*/
+        text-align: center;
+        /*文字行高也要切图得:从产品图片的底量到H3标签下的点击播放文字顶部，保留偶数*/
+        line-height: 38px;
+        font-size: 14px;
+        /*加粗*/
+       font-weight: bold;
+    }
+    .content .product ul li p.play{
+        /*让容器内超链接文字居中*/
+        text-align: center;
+    }
+    .content .product ul li p.play a{
+        font-size: 12px;
+        /*注意：超链接的居中要写在超链接的容器里，是让容器内的文字居中，超链接自身无法居中*/
+        /*text-align: center;*/
+        /*点击播放四个字行高就用字高就可以，下面没有下文*/
+        line-height: 12px;
+        color: #38B774;
+        text-decoration: none;
+        padding-right: 10px;
+        /*点击播放的三角形图标图片,让其左右居右，上下居中*/
+        background: url(images/sanjiaoxing.png) no-repeat right center;
+
+
+    }
+</style>
+<body>
+<!--导航部分-->
+<div class="header">
+    <!--导航的版心-->
+    <div class="inner_c">
+        <!--Logo-->
+        <h1 class="logo"><a href="#"><img src="images/logo.png"></a></h1>
+        <!--导航-->
+        <div class="nav">
+            <ul>
+                <li class="current"><a href="#">首页</a></li>
+                <li><a href="#">博雅游戏</a></li>
+                <li><a href="#">博雅新闻</a></li>
+                <li><a href="#">关于我们</a></li>
+                <li><a href="#">客服中心</a></li>
+                <li class="last"><a href="#">投资者关系</a></li>
+            </ul>
+        </div>
+        <div class="jrwm">
+            <a href="#">加入我们</a>
+        </div>
+    </div>
+</div>
+<!--导航条下的Banner通版，由于图片较大为不出现导航条使用块背景图实现
+注意不要将其放在导航的div中，否则就得用隔墙法清除浮动了-->
+<div class="banner"></div>
+<!--中间内容部分-->
+<!--共用居中样式-->
+<div class="content inner_c">
+    <!--中间内容的产品板块-->
+    <div class="product">
+        <ul>
+            <li>
+                <!--产品图片(虽然不放在p中一样没问题，放在p标签里看起来更好)-->
+                <p class="pro_image">
+                    <img src="images/bpt.jpg" alt="">
+                </p>
+                <!--产品标题-->
+                <h3>BPT宣传片</h3>
+                <!--点击播放-->
+                <p class="play">
+                    <a href="#">点击播放</a>
+                </p>
+            </li>
+            <li>
+                <!--产品图片(img虽然不放在p中一样没问题，放在p标签里看起来更好)-->
+                <p class="pro_image">
+                    <img src="images/video.jpg" alt="">
+                </p>
+                <!--产品标题-->
+                <h3>BPT宣传片</h3>
+                <!--点击播放-->
+                <p class="play">
+                    <a href="#">点击播放</a>
+                </p>
+            </li>
+            <li>
+                <!--产品图片(虽然不放在p中一样没问题，放在p标签里看起来更好)-->
+                <p class="pro_image">
+                    <img src="images/gamepic1.jpg" alt="">
+                </p>
+                <!--产品标题-->
+                <h3>BPT宣传片</h3>
+                <!--点击播放-->
+                <p class="play">
+                    <a href="#">点击播放</a>
+                </p>
+            </li>
+            <li class="last">
+                <!--产品图片(虽然不放在p中一样没问题，放在p标签里看起来更好)-->
+                <p class="pro_image">
+                    <img src="images/gamepic3.jpg" alt="">
+                </p>
+                <!--产品标题-->
+                <h3>BPT宣传片</h3>
+                <!--点击播放-->
+                <p class="play">
+                    <a href="#">点击播放</a>
+                </p>
+            </li>
+        </ul>
+    </div>
+</div>
+</body>
+</html>
