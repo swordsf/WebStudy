@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<!--精确还原盒子目的是从设计软件Firework打开的设计图中量取必要的尺寸，在代码软件IDE中编写代码实现最终展示在浏览器中
+通过fireworks的视图--标尺，再从上方和左方拉出标尺线在设计图的内边框上，之后在V指针鼠标下按住shift自动
+计算出该边框的width和height，边框粗细同理
+-->
+<style type="text/css">
+    *{
+        margin: 0;
+        padding:0;
+    }
+    p{
+        /*计算出精确padding-top和bottom后要从总height中减去两者的和68-20得48px，貌似不写也可以*/
+        /*height:68px;*/
+        height:48px;
+        /*同理最初用firework量出的宽也要减去左右padding的和588-40得548px
+        熟练后最好从先计算文字字体字号行高--量文字上下和左(右与左保持一致)padding
+        最后从上下左右padding的边界开始拉标尺得盒子的宽与高省的先量宽高再做减法
+        */
+        width: 548px;
+
+        border:1px solid red;
+        margin: 100px;
+        /*首行空两个汉字的格，单位比较奇怪，叫做em，em就是汉字的一个宽度。
+        首行缩进两个汉字*/
+        text-indent: 2em;
+        /*设计图中段落上方的留白并不全是padding而是一部分行高+padding，CSS中任何文本都有行高因此要先测算出行高*/
+        /*行高,段落的精确行高依然是在Firework中拉出一个文本框（注意选择不消除锯齿，否则字体模糊无法完美匹配），
+        输入设计图两行的上下对应文本覆盖上下两行的文本，设置字体、字号、行间距达到完全覆盖的时候就获得了精确行高*/
+        line-height:24px;
+        /*得到精确行高24后，使用切片工具切一个高24的切片，复制几份分别覆盖在设计图的几行文本的字上，则在最上方内border线拉一个
+        标尺到第一行文字的覆盖切片上方，得到上padding，下padding同理*/
+        padding-top:10px;
+        padding-bottom: 10px;
+        /*而段落左右padding直接用切片工具拉出来长度即可，测得左侧padding为20右侧为23，右侧不准是原因是因为最后一个字
+        放不下换行导致的，所以“测左不测右”，取左侧准确的padding*/
+        padding-left:20px;
+        padding-right:20px;
+        /*字号也可以通过firework中拉出的文本框调试得出*/
+        font-size: 14px;
+        font-family: 宋体;
+    }
+</style>
+<body>
+    <p>
+        艺人柯震东爆发吸毒丑闻后，只确定要重返校园好好沉淀自己，接着就被爆出2013年从文化大学体育系休学后，早就悄悄转学并改读资讯管理科系。
+    </p>
+</body>
+</html>

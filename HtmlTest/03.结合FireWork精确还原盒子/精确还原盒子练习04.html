@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style type="text/css">
+        *{
+            margin:0;
+            padding: 0;
+        }
+        body{
+            font-family: 微软雅黑;
+        }
+        .news {
+            /*firework截取顶部的灰色线段作为容器宽度*/
+            width: 260px;
+            /*盒子不用给高，用内容撑起来，先随便写一个400*/
+            /*height:400px;*/
+            border-top:1px solid gray;
+            margin:100px;
+        }
+        .news h3{
+            color: red;
+            /*通过firework测量得时评两字为16号微软雅黑*/
+            font-size: 16px;
+            font-family: "微软雅黑";
+            /*此时因为时评两个字是第一行且单独的一行，不是正文多行，所以行高可以自行测定，只要保证时评两字的行高
+            加上容器div的padding-top和等于设计图空白即可。为简便起见我们可以利用切图将空白全部覆盖作为h3文字的行高，即让
+            行高切图范围贴着灰色线，这样就不必再设计padding-top了*/
+            /*切图量出时评两字距离上面灰色线的距离为17,17*2+字号16=50即行高的值*/
+            line-height:50px;
+            padding-left: 1px;
+        }
+        .news ul{
+            list-style: none;
+            /*与设计图的一像素差别也别放过，能使用padding就不用margin*/
+            padding-top: 1px;
+        }
+        .news ul li{
+            /*拉取文本框，换行对应列表的两行文字，调制获得字体、字号及行高*/
+            /*font-family: "微软雅黑";这里微软雅黑在body中统一设置了*/
+            font-size: 12px;
+            line-height:24px;
+/*量取左padding为14*/
+            padding-left: 14px;
+        }
+    </style>
+</head>
+<body>
+<div class="news">
+    <h3>时评</h3>
+    <ul>
+        <li><a href="#">新京报：钱理群卖房养老与你我有多大关系？</a></li>
+        <li><a href="#">新京报：“低收入男人共妻论”有多么荒谬</a></li>
+        <li><a href="#">京华时报：杂技演员当市委书记有何不可</a></li>
+        <li><a href="#">南都：谭嗣同真圣母，康有为圣母病？</a></li>
+    </ul>
+</div>
+</body>
+</html>
