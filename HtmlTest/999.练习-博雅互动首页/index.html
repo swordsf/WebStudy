@@ -25,6 +25,7 @@
         clear: both;
     }
 
+    /*板块居中，单独写的公共样式*/
     .inner_c {
         width: 1000px;
         /*居中*/
@@ -40,10 +41,21 @@
     .header .logo {
         float: left;
         padding-right: 39px;
+        /*宽高为logo图片宽高*/
         width: 174px;
         height: 58px;
-    }
 
+    }
+    .header .logo a{
+        /*宽高为logo图片宽高，使用背景图展示,注意超链接要转为块元素*/
+        /*padding挤不走背景图，使用图片定位*/
+        display: block;
+        width: 174px;
+        height: 58px;
+        background: url("images/logo.png") no-repeat;
+        /*隐藏文字*/
+        text-indent:-999em;
+    }
     .header .nav {
         float: left;
         /*background-color: orange;*/
@@ -143,6 +155,9 @@
     .content {
         /*padding值等依然从设计图中切图*/
         padding-top: 50px;
+        height: 650px;
+        /*中部背景图*/
+        background: url("images/indexmainbg.jpg") no-repeat center bottom;
     }
 
     .content .product {
@@ -174,26 +189,30 @@
         /*最后一个块宽度为217，218放不下就会换行*/
         width: 217px;
     }
-    .content .product ul li p.pro_image img{
+
+    .content .product ul li p.pro_image img {
         /*小技巧：设置图片宽度为父亲的100%则约束了图片的大小*/
         width: 100%;
         /*高不写也可以*/
-        height:130px;
+        height: 130px;
     }
-    .content .product ul li h3{
+
+    .content .product ul li h3 {
         /*居中*/
         text-align: center;
         /*文字行高也要切图得:从产品图片的底量到H3标签下的点击播放文字顶部，保留偶数*/
         line-height: 38px;
         font-size: 14px;
         /*加粗*/
-       font-weight: bold;
+        font-weight: bold;
     }
-    .content .product ul li p.play{
+
+    .content .product ul li p.play {
         /*让容器内超链接文字居中*/
         text-align: center;
     }
-    .content .product ul li p.play a{
+
+    .content .product ul li p.play a {
         font-size: 12px;
         /*注意：超链接的居中要写在超链接的容器里，是让容器内的文字居中，超链接自身无法居中*/
         /*text-align: center;*/
@@ -204,8 +223,71 @@
         padding-right: 10px;
         /*点击播放的三角形图标图片,让其左右居右，上下居中*/
         background: url(images/sanjiaoxing.png) no-repeat right center;
+    }
 
+    /*产品与招聘板块*/
+    .content .info {
+        padding-top: 53px;
+    }
 
+    .content .info .boyaanews {
+        float: left;
+        width: 500px;
+        /*background-color: yellow;*/
+        background: url("images/bynewsbg.jpg") no-repeat;
+        padding-top: 111px;
+    }
+
+    .content .info .boyaajobs {
+        float: left;
+        width: 500px;
+        height: 314px;
+        background: url("images/byhrbg3.jpg") no-repeat;
+    }
+
+    .content .info .boyaanews ul {
+        list-style: none;
+        /*约束li的宽度，否则li的底边线会横跨整个新闻板块*/
+        padding: 0 20px;
+    }
+
+    .content .info .boyaanews ul li {
+        line-height: 50px;
+        border-bottom: 1px solid #DBE1E7;
+        height: 50px;
+        font-size: 12px;
+        color: #444866;
+    }
+
+    .content .info .boyaanews ul li span {
+        color: #AFBECF;
+        margin-right: 22px;
+    }
+
+    .content .info .boyaanews ul li a {
+        text-decoration: none;
+        color: #444866;
+    }
+
+    .content .info .boyaanews ul li a:hover {
+        color: red;
+    }
+
+    /*招聘模块*/
+    .content .info .boyaajobs .title {
+        /*调整图片位置*/
+        padding-top: 40px;
+        padding-left: 78px;
+    }
+
+    .content .info .boyaajobs .title h3 {
+        /*专场招聘，背景图*/
+        /*图片宽高*/
+        width: 119px;
+        height: 51px;
+        background:url("images/zczp.png") no-repeat;
+        /*将H3中的专场招聘文字挪走，用户看不见但保留SEO文字*/
+        text-indent:-999em;
     }
 </style>
 <body>
@@ -213,8 +295,9 @@
 <div class="header">
     <!--导航的版心-->
     <div class="inner_c">
-        <!--Logo-->
-        <h1 class="logo"><a href="#"><img src="images/logo.png"></a></h1>
+        <!--Logo，用H1提高SEO，之后用缩进因此H1文字，用H1的背景图展示logo，在超链接中直接插入img-->
+        <!--<h1 class="logo"><a href="#"><img src="images/logo.png"></a></h1>  旧写法-->
+        <h1 class="logo"><a href="#">博雅互动-世界上最好的游戏公司</a></h1>
         <!--导航-->
         <div class="nav">
             <ul>
@@ -235,60 +318,82 @@
 注意不要将其放在导航的div中，否则就得用隔墙法清除浮动了-->
 <div class="banner"></div>
 <!--中间内容部分-->
-<!--共用居中样式-->
-<div class="content inner_c">
-    <!--中间内容的产品板块-->
-    <div class="product">
-        <ul>
-            <li>
-                <!--产品图片(虽然不放在p中一样没问题，放在p标签里看起来更好)-->
-                <p class="pro_image">
-                    <img src="images/bpt.jpg" alt="">
-                </p>
-                <!--产品标题-->
-                <h3>BPT宣传片</h3>
-                <!--点击播放-->
-                <p class="play">
-                    <a href="#">点击播放</a>
-                </p>
-            </li>
-            <li>
-                <!--产品图片(img虽然不放在p中一样没问题，放在p标签里看起来更好)-->
-                <p class="pro_image">
-                    <img src="images/video.jpg" alt="">
-                </p>
-                <!--产品标题-->
-                <h3>BPT宣传片</h3>
-                <!--点击播放-->
-                <p class="play">
-                    <a href="#">点击播放</a>
-                </p>
-            </li>
-            <li>
-                <!--产品图片(虽然不放在p中一样没问题，放在p标签里看起来更好)-->
-                <p class="pro_image">
-                    <img src="images/gamepic1.jpg" alt="">
-                </p>
-                <!--产品标题-->
-                <h3>BPT宣传片</h3>
-                <!--点击播放-->
-                <p class="play">
-                    <a href="#">点击播放</a>
-                </p>
-            </li>
-            <li class="last">
-                <!--产品图片(虽然不放在p中一样没问题，放在p标签里看起来更好)-->
-                <p class="pro_image">
-                    <img src="images/gamepic3.jpg" alt="">
-                </p>
-                <!--产品标题-->
-                <h3>BPT宣传片</h3>
-                <!--点击播放-->
-                <p class="play">
-                    <a href="#">点击播放</a>
-                </p>
-            </li>
-        </ul>
+<!--div content负责贯穿整个横版页面（横版山峰全背景图），内部的div inner_负责居中版心；样板设计-->
+<div class="content">
+    <div class="inner_c">
+        <!--中间内容的产品板块-->
+        <div class="product">
+            <ul>
+                <li>
+                    <!--产品图片(虽然不放在p中一样没问题，放在p标签里看起来更好)-->
+                    <p class="pro_image">
+                        <img src="images/bpt.jpg" alt="">
+                    </p>
+                    <!--产品标题-->
+                    <h3>BPT宣传片</h3>
+                    <!--点击播放-->
+                    <p class="play">
+                        <a href="#">点击播放</a>
+                    </p>
+                </li>
+                <li>
+                    <!--产品图片(img虽然不放在p中一样没问题，放在p标签里看起来更好)-->
+                    <p class="pro_image">
+                        <img src="images/video.jpg" alt="">
+                    </p>
+                    <!--产品标题-->
+                    <h3>BPT宣传片</h3>
+                    <!--点击播放-->
+                    <p class="play">
+                        <a href="#">点击播放</a>
+                    </p>
+                </li>
+                <li>
+                    <!--产品图片(虽然不放在p中一样没问题，放在p标签里看起来更好)-->
+                    <p class="pro_image">
+                        <img src="images/gamepic1.jpg" alt="">
+                    </p>
+                    <!--产品标题-->
+                    <h3>BPT宣传片</h3>
+                    <!--点击播放-->
+                    <p class="play">
+                        <a href="#">点击播放</a>
+                    </p>
+                </li>
+                <li class="last">
+                    <!--产品图片(虽然不放在p中一样没问题，放在p标签里看起来更好)-->
+                    <p class="pro_image">
+                        <img src="images/gamepic3.jpg" alt="">
+                    </p>
+                    <!--产品标题-->
+                    <h3>BPT宣传片</h3>
+                    <!--点击播放-->
+                    <p class="play">
+                        <a href="#">点击播放</a>
+                    </p>
+                </li>
+            </ul>
+        </div>
+        <!--中下方的新闻和招聘板块，并排要用到浮动-->
+        <div class="info">
+            <!--新闻-->
+            <div class="boyaanews">
+                <ul>
+                    <li><span>09 / 28</span><a href="#">博雅国际博客大赛(BPT)在澳门落幕</a></li>
+                    <li><span>09 / 28</span><a href="#">博雅国际博客大赛(BPT)在澳门落幕</a></li>
+                    <li><span>09 / 28</span><a href="#">博雅国际博客大赛(BPT)在澳门落幕</a></li>
+                    <li><span>09 / 28</span><a href="#">博雅国际博客大赛(BPT)在澳门落幕</a></li>
+                </ul>
+            </div>
+            <!--招聘-->
+            <div class="boyaajobs">
+                <div class="title">
+                    <!--专场招聘图标使用H3背景图，<h3>专场招聘</h3>文字用来SEO
+                    使用img插入，搜索引擎看不见图片-->
+                    <h3>专场招聘</h3>
+                </div>
+            </div>
+        </div>
     </div>
 </div>
 </body>
