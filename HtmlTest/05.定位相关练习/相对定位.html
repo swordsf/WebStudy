@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style type="text/css">
+        div {
+            width: 200px;
+            height: 200px;
+        }
+
+        .box1 {
+            background-color: green;
+        }
+
+        .box2 {
+            background-color: skyblue;
+            /*相对定位，就是微调元素位置的。让元素相对自己原来的位置，进行位置调整。*/
+            /*相对定位，向右“移动”100，向下“移动”200*/
+            position: relative; /*必须先声明，自己要相对定位了*/
+            left: 100px; /*然后进行调整*/
+            top: 150px; /*然后进行调整*/
+            /*right:10px;不能左和右、上和下一起用，没效果*/
+            /*bottom: 10px;*/
+            /*注意相对定位不脱标，真实位置是在老家，只不过影子出去了，可以到处飘。*/
+            /*相对定位用途
+            相对定位有坑，所以一般不用于做“压盖”效果。页面中，效果极小。就两个作用：
+            1） 微调元素
+            2） 做绝对定位的参考，子绝父相（讲绝对定位的时候说）*/
+        }
+
+        .box3 {
+            background-color: orange;
+        }
+    </style>
+</head>
+<body>
+<div class="box1"></div>
+<div class="box2"></div>
+<div class="box3"></div>
+</body>
+</html>

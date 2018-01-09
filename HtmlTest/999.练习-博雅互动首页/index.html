@@ -46,7 +46,8 @@
         height: 58px;
 
     }
-    .header .logo a{
+
+    .header .logo a {
         /*宽高为logo图片宽高，使用背景图展示,注意超链接要转为块元素*/
         /*padding挤不走背景图，使用图片定位*/
         display: block;
@@ -54,8 +55,9 @@
         height: 58px;
         background: url("images/logo.png") no-repeat;
         /*隐藏文字*/
-        text-indent:-999em;
+        text-indent: -999em;
     }
+
     .header .nav {
         float: left;
         /*background-color: orange;*/
@@ -285,9 +287,36 @@
         /*图片宽高*/
         width: 119px;
         height: 51px;
-        background:url("images/zczp.png") no-repeat;
+        background: url("images/zczp.png") no-repeat;
         /*将H3中的专场招聘文字挪走，用户看不见但保留SEO文字*/
-        text-indent:-999em;
+        text-indent: -999em;
+    }
+
+    .content .info .boyaajobs h4 {
+        padding-left: 20px;
+        padding-top: 18px;
+        color: white;
+        font-size: 14px;
+        /*加粗*/
+        font-weight:bold;
+    }
+    .content .info .boyaajobs ul{
+        padding-left: 20px;
+        width:305px;
+        list-style: none;
+    }
+    .content .info .boyaajobs ul li{
+        border-bottom:1px solid #6FDEA3;
+        line-height: 37px;
+        height:37px;
+    }
+    .content .info .boyaajobs ul li a{
+        font-size: 12px;
+        color: white;
+        text-decoration: none;
+    }
+    .content .info .boyaajobs ul li a:hover{
+        color: orange;
     }
 </style>
 <body>
@@ -392,6 +421,13 @@
                     使用img插入，搜索引擎看不见图片-->
                     <h3>专场招聘</h3>
                 </div>
+                <h4>专场招聘岗位:</h4>
+                <ul>
+                    <li><a href="#">PHP开发工程师</a></li>
+                    <li><a href="#">C++开发工程师</a></li>
+                    <li><a href="#">WEB前端开发工程师</a></li>
+                    <li><a href="#">大数据开发工程师</a></li>
+                </ul>
             </div>
         </div>
     </div>
