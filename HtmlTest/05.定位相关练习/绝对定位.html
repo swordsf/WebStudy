@@ -4,6 +4,15 @@
     <meta charset="UTF-8">
     <title>Title</title>
     <style type="text/css">
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            height: 3999px;
+        }
+
         div {
             width: 200px;
             height: 200px;
@@ -15,7 +24,22 @@
 
         .box2 {
             background-color: skyblue;
-          
+            /*绝对定位的盒子，是脱离标准文档流的。所以，所有的标准文档流的性质，绝对定位之后都不遵守了。
+            绝对定位之后，标签就不区分所谓的行内元素、块级元素了，不需要display:block;就可以设置宽、高了
+            比如给一个行内元素span设置为绝对定位后就可以设置宽高了*/
+            position: absolute;
+            /*默认相对页面左上角移动*/
+            left: 100px;
+            top: 150px;
+            /*绝对定位的参考点，如果用top描述，那么定位参考点就是页面的左上角，而不是浏览器的左上角*/
+            /*如果用bottom描述，那么就是浏览器"首屏"窗口尺寸对应的页面的左下角*/
+            /*一个绝对定位的元素，如果父辈元素中出现了任何定位了的元素，那么将以父辈这个元素，为参考点。
+            要听最近的已经定位的祖先元素的，不一定是父亲，可能是爷爷：
+1	        <div class="box1">   →  相对定位
+2		        <div class="box2">  →  没有定位
+3			        <p></p>   → 绝对定位，将以box1为参考，因为box2没有定位，box1就是最近的父辈元素
+4		        </div>
+5	        </div>*/
         }
 
         .box3 {
@@ -27,5 +51,6 @@
 <div class="box1"></div>
 <div class="box2"></div>
 <div class="box3"></div>
+
 </body>
 </html>
