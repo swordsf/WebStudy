@@ -1,0 +1,362 @@
+/*存放基本的公共样式*/
+@charset "UTF-8";
+/*css 初始化 */
+html, body, ul, li, ol, dl, dd, dt, p, h1, h2, h3, h4, h5, h6, form, fieldset, legend, img {
+    margin: 0;
+    padding: 0;
+}
+
+/*去掉表单元素的外边框等*/
+fieldset, img, input, button {
+    border: none;
+    padding: 0;
+    margin: 0;
+    outline-style: none;
+}
+
+ul, ol {
+    list-style: none;
+}
+
+input {
+    padding-top: 0;
+    padding-bottom: 0;
+    font-family: "SimSun", "宋体";
+}
+
+select, input {
+    /*表单元素文字垂直居中*/
+    vertical-align: middle;
+}
+
+select, input, textarea {
+    font-size: 12px;
+    margin: 0;
+}
+
+textarea {
+    resize: none;
+}
+
+/*防止拖动*/
+img {
+    border: 0;
+    vertical-align: middle;
+}
+
+/*去掉图片底侧默认的3像素空白缝隙，设置display:block也可以去掉*/
+table {
+    border-collapse: collapse;
+}
+
+/*设置表格的边框被合并为一个单一的边框*/
+body {
+    /*unicode表示的宋体、12号字 1.5倍行高*/
+    font: 12px/150% Arial, Verdana, "\5b8b\4f53";
+    color: #666;
+    background: #fff
+}
+
+/*清除浮动*/
+.clearfix:before, .clearfix:after {
+    content: "";
+    display: table;
+}
+
+.clearfix:after {
+    clear: both;
+}
+
+.clearfix {
+    *zoom: 1; /*IE/7/6*/
+}
+
+a {
+    color: #666;
+    text-decoration: none;
+}
+
+a:hover {
+    color: #C81623;
+}
+
+/*font-size:100%让h1~h6字体大小都会父亲一样大*/
+h1, h2, h3, h4, h5, h6 {
+    text-decoration: none;
+    font-weight: normal;
+    font-size: 100%;
+}
+
+/*s删除线、i和em都是倾斜线：字体正常，去除s的删除线和i、em的下划线*/
+s, i, em {
+    font-style: normal;
+    text-decoration: none;
+}
+
+/*公共类*/
+.w { /*大小居中的版心提取，后面可以用来做响应式：屏幕小了就改.w */
+    width: 1210px;
+    margin: 0 auto;
+}
+
+.fl {
+    float: left
+}
+
+.fr {
+    float: right
+}
+
+.al {
+    text-align: left
+}
+
+.ac {
+    text-align: center
+}
+
+.ar {
+    text-align: right
+}
+
+/*隐藏*/
+.hide {
+    display: none
+}
+
+/*--------------------此练习项目使用--------------------*/
+
+/*京东的主色调*/
+.col-red {
+    color: #C81623 !important;
+}
+
+/*--------头部导航开始---------*/
+.shortcut {
+    height: 30px;
+    /*内容垂直居中*/
+    line-height: 30px;
+    background: #F1F1F1;
+    width: 100%;
+}
+
+/*从◇特殊符号中截取一半做三角形符号,采用子绝父相定位
+此例为子绝 子绝 祖父dt相。dt为存放送至北京及三角号的盒子
+先将大盒子i定好位置，再调整放有特殊符号的小盒子s*/
+.dt,
+.shortcut .fore {/*为fore提高权重，否则padding沿用li的，左右宽度不够*/
+    position: relative;
+    padding: 0 20px 0 10px;
+}
+
+.dt i,
+.fore i {
+    /*特殊符号字体加粗400,特殊符号15像素大小行高15，宋体
+    font-weight:bold;等同与font-weight:700px;*/
+    font: 400 15px/15px "宋体";
+    /*要指定宽度为字体大小，否则不显示。设置了绝对定位，因此可以指定宽度*/
+    width: 15px;
+    position: absolute;
+    right: 3px;;
+    /*高可以在chrome浏览器中动态调整合适位置*/
+    top: 13px;
+    /*因为菱形特殊符号为15px，设置容器i高为一半7，截取出三角形*/
+    height: 7px;
+    /*截取*/
+    overflow: hidden;
+}
+
+.dt s,
+.fore s {
+    /*将s容器内的特殊符号上移，截取出下半三角*/
+    position: absolute;
+    top: -7px;
+    left: 0;
+}
+
+.fl .dt {
+    padding: 0 25px 0 10px;
+}
+
+.fr li {
+    float: left;
+    padding: 0 10px;
+}
+
+/*导航菜单li后小竖线*/
+.fr li.line {
+    width: 1px;
+    height: 12px;
+    background-color: #ddd;
+    margin-top: 9px;
+    /*层叠取消线上的padding,因为背景色也会显示在padding上，会导致线条变粗*/
+    padding: 0;
+}
+/*手机京东小图标*/
+.shortcut .tel-jd{
+    padding: 0 20px 0 25px;
+}
+.tel{
+    position: absolute;
+    left:5px;
+    top:5px;
+    width:15px;
+    height: 20px;
+    background: url("../images/sprite.png") no-repeat ;
+}
+/*--------头部导航结束---------*/
+
+/*--------顶部banner开始---------*/
+.topbanner{
+    background-color: #8A25C6;
+}
+.bannerparent{
+    /*子绝父相*/
+    position: relative;
+}
+.close-banner{
+    /*将半透明关闭按钮定位在右上角*/
+    position: absolute;
+    right: 0;
+    top: 5px;
+    /*宽高等同于图片宽高，超链接绝对定位后可设置宽高*/
+    width:19px;
+    height:19px;
+    background: url("../images/close.png") no-repeat;
+}
+/*鼠标停留在关闭按钮上,颜色变深*/
+.close-banner:hover{
+    /*背景图靠底对齐，0可省略*/
+    background-position: 0 bottom;
+}
+/*--------头部导航结束---------*/
+
+/*logo、搜索框与购物车部分*/
+.logo{
+    /*先在FW量logo区域整体宽高布局好后，量logo的上下间距时增加padding之后要height要减去增加的padding*/
+    width: 360px;
+    /*height: 100px;*/
+    /*100-padding-top的25=75*/
+    height: 75px;
+    float: left;
+    padding-top: 25px;
+    background: url("../images/logo.png") no-repeat 0 25px;
+    position: relative;
+}
+.jd-a{
+    display: block;
+    width:270px;
+    height:60px;
+    text-indent: -2000em;
+}
+/*双11动态图*/
+.db11{
+    position: absolute;
+    width: 180px;
+    height: 80px;
+    left: 168px;
+    top: 10px;
+}
+/*搜索框*/
+.search{
+    width: 538px;
+    /*height: 100px;*/
+    height:35px;
+    /*background-color: purple;*/
+    float: left;
+    margin-top: 25px;
+}
+/*搜索输入框*/
+.search input{
+    /*给了左padding值，盒子又有宽，width要减去padding值454-4=450*/
+    /*width: 454px;*/
+    width: 450px;
+    height: 32px;
+    border:2px solid #B61D1D;
+    /*输入文字距离输入框左边框4像素*/
+    padding-left: 4px;
+    color: #666;
+    /*font-size: 14px;*/
+    /*font-family: "微软雅黑";*/
+    /*压缩成一句*/
+    font: 14px/32px "microsoft yahei";
+    float: left;
+}
+/*搜索按钮*/
+.search button{
+    width: 80px;
+    height: 36px;
+    background-color: #B61D1D;
+    float: left;
+    font:16px/36px "microsoft yahei";
+    color: #FFFFFF;
+    cursor:pointer;
+}
+.cart{
+    /*宽度对应减去padding-left*/
+    /*width: 139px;*/
+    width: 96px;
+    /*我的购物车文字并非左右居中，使用padding*/
+    padding-left:43px;
+    height:34px;
+    line-height: 34px;
+    float: right;
+    margin:25px 65px 0 0;
+    /*background-color: skyblue;*/
+    border: 1px solid #DFDFDF;
+    position: relative;
+}
+/*购物车图标*/
+.cart .icon1{
+    position: absolute;
+    top:10px;
+    left:20px;
+    width: 16px;
+    height: 13px;
+    /*从精灵图切取*/
+    background:url("../images/sprite.png") no-repeat  -1px -59px;
+}
+/*右箭头*/
+.cart .icon2{
+    font:400 13px/13px simsum;
+    position: absolute;
+    top:10px;
+    /*注意这里使用right*/
+    right: 10px;
+
+}
+/*购物车数量显示图标*/
+.cart .icon3{
+    position: absolute;
+    width: 16px;
+    height: 14px;
+    background-color: #C81623;
+    font-size: 12px;
+    /*层叠掉继承的行高34，否则文字会下坠*/
+    line-height: 12px;
+    /*居中*/
+    text-align: center;
+    color:#FFFFFF;
+    /*让图标飘出购物车上方一点*/
+    top:-4px;
+    /*圆角矩形CSS3样式*/
+    border-radius: 7px 7px 7px 0;
+
+}
+/*热搜关键词*/
+.hotwords{
+    width:500px;
+    padding:7px 0;
+    /*background: pink;*/
+    /*要么都浮动，要么都不浮动。兄弟已经有浮动了*/
+    float: left;
+}
+.hotwords a{
+    margin-right: 6px;
+}
+/*logo、搜索框与购物车部分结束*/
+
+/*通用底部样式*/
+
+
+
