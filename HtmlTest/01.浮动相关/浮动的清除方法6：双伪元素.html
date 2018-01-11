@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style type="text/css">
+        .father{
+            width: 600px;
+            border:1px solid red;
+        }
+        /*父亲内的子div都是浮动的，则不清除浮动，父亲就会没有高度变为一条线
+         清除浮动的目的:就是为了解决父盒子高度为0的问题。*/
+        .div1,.div2{
+            width: 200px;
+            height:100px;
+            background-color: pink;
+            float: left;
+        }
+        /*清除浮动:真正的叫法为闭合浮动*/
+        /*双伪元素清除浮动,前后都有，闭合浮动*/
+        .clearfix:before,.clearfix:after{
+            /*使用表格布局*/
+            display: table;
+            /*伪元素必须包含此内容,内容加了.会被撑高多一些*/
+            content: "";
+        }
+        /*清除浮动*/
+        .clearfix:after{
+            clear: both;
+        }
+        /*IE6兼容写法*/
+        .clearfix{
+            zoom: 1;
+        }
+    </style>
+</head>
+<body>
+<!--为需要清除浮动的父容器father添加清除浮动样式clearfix-->
+<div class="father clearfix">
+    <div class="div1">div1</div>
+    <div class="div2">div2</div>
+</div>
+</body>
+</html>
