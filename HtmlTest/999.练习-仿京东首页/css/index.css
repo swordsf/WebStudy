@@ -1,1 +1,79 @@
 /*首页样式表*/
+@charset "UTF-8";
+
+/*大banner*/
+.banner604{
+    position: relative;
+    /*因为此处的大banner是背景，如果给了高会将下面的内容顶下去，因此不给高，而超链接孩子也是绝对定位脱标不占空间*/
+}
+.banner604 a{
+    /*让大banner的超链接绝对定位不占空间*/
+    position: absolute;
+    top:0;
+    left:0;
+    /*绝对定位不指定宽度则宽度为内容宽度，此处需要其与父亲通版一样宽*/
+    width:100%;
+    height: 604px;
+    background:url("../images/banner.jpg") no-repeat top center;
+}
+.main{
+    /*height: 800px;*/
+    /*background-color: pink;*/
+    /*也设置为定位，则与banner都是定位，权值默认都为0，但main在文档流后面，其覆盖在banner上方*/
+    position: relative;
+}
+.slider{
+    width: 730px;
+    height: 453px;
+    background-color: pink;
+    margin-left: 220px;
+    margin-top: 12px;
+    float: left;
+    position: relative;
+}
+.news{
+    float: right;
+    width: 248px;
+    /*减去增加的2px边框*/
+    height: 451px;
+    background-color: purple;
+    border: 1px solid #E4E4E4;
+    margin-top: 12px;
+}
+/*轮播图小圆点,绝对定位,左右居中，上下居下*/
+.slider .circle{
+    position: absolute;
+    bottom: 8px;
+    left:50%;
+    margin-left: -66px;
+}
+.slider .circle li{
+    /*宽高自己量*/
+    width:18px;
+    height: 18px;
+    /*圆角*/
+    border-radius: 50%;
+    float: left;
+    background: #3E3E3E;
+    /*水平垂直居中*/
+    text-align: center;
+    line-height:18px;
+    color: #FFFFFF;
+    /*圆点间距*/
+    margin:0 2px;
+    cursor: pointer;
+}
+.circle li.current{
+    background-color: #B61B1F;
+}
+
+.arrow-l,.arrow-r{
+    position: absolute;
+    width:28px;
+    height: 62px;
+    background-color: pink;
+    /*绝对定位上下居中，-高度一半*/
+    top:50%;
+    margin-top: -31px;
+
+}

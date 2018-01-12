@@ -372,8 +372,97 @@ s, i, em {
 .hotwords a {
     margin-right: 6px;
 }
-
 /*logo、搜索框与购物车部分结束*/
+
+/*商品导航栏开始*/
+.jd-nav{
+    width: 100%;
+    height: 44px;
+    border-bottom: 2px solid #B1191A;
+}
+.jd-nav .dropdown{
+    width: 210px;
+    height: 44px;
+    float: left;
+    /*background-color: #B1191A;*/
+    position: relative;
+    z-index: 10;
+    /*超出显示，指明的话兼容性更好*/
+    overflow: visible;
+}
+.jd-nav .dropdown .dt{
+    /*宽度继承父盒子，可以不指定*/
+    height:44px;
+    background-color: pink;
+}
+.jd-nav .dropdown .dt a{
+    display: block;
+    height: 44px;
+    font:400 15px/44px "微软雅黑";
+    background-color: #B1191A;
+    color: #ffffff;
+    padding-left: 10px;
+}
+.jd-nav .dropdown .dd{
+    height: 465px;
+    background-color: #C81623;
+    margin-top: 2px;
+}
+.dropdown .dd .item{
+    height: 31px;
+    line-height: 31px;
+    border-left:1px solid #B61D1D;
+    padding-left: 10px;
+    color: #FFFFFF;
+    font-size: 14px;
+    font-family: "微软雅黑";
+}
+.dropdown .dd .item h3{
+    float: left;
+}
+.dropdown .dd .item span{
+    float: right;
+    padding-right: 15px;
+    font-family: "宋体";
+    font-weight: 600;
+}
+.jd-nav .navitems{
+    width: 680px;
+    height: 44px;
+    /*background-color: pink;*/
+    float: left;
+}
+.jd-nav .navitems li{
+    float: left;
+}
+/*新品new图标*/
+.jd-nav .navitems li.new{
+    background: url("../images/new.jpg") no-repeat right top;
+}
+.jd-nav .navitems li a{
+    display: block;
+    color: #333;
+    font:400 15px/44px "微软雅黑";
+    padding:0 20px;
+}
+.jd-nav .navitems li a:hover{
+    color:#B1191A;
+}
+.jd-nav .bike{
+    width: 140px;
+    height: 43px;
+    /*background-color: purple;*/
+    float: right;
+    background: url("../images/bike.jpg") no-repeat;
+}
+.jd-nav .bike a{
+    /*注意变为块状元素！*/
+    display: block;
+    height:43px;
+    width: 140px;
+}
+
+/*商品导航栏结束*/
 
 /*通用底部样式*/
 /*宣传口号*/
@@ -464,3 +553,5 @@ s, i, em {
 .againw .message a{
     margin-right: 15px;
 }
+
+/*公共部分完成*/
