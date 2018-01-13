@@ -2,27 +2,30 @@
 @charset "UTF-8";
 
 /*大banner*/
-.banner604{
+.banner604 {
     position: relative;
     /*因为此处的大banner是背景，如果给了高会将下面的内容顶下去，因此不给高，而超链接孩子也是绝对定位脱标不占空间*/
 }
-.banner604 a{
+
+.banner604 a {
     /*让大banner的超链接绝对定位不占空间*/
     position: absolute;
-    top:0;
-    left:0;
+    top: 0;
+    left: 0;
     /*绝对定位不指定宽度则宽度为内容宽度，此处需要其与父亲通版一样宽*/
-    width:100%;
+    width: 100%;
     height: 604px;
-    background:url("../images/banner.jpg") no-repeat top center;
+    background: url("../images/banner.jpg") no-repeat top center;
 }
-.main{
+
+.main {
     /*height: 800px;*/
     /*background-color: pink;*/
     /*也设置为定位，则与banner都是定位，权值默认都为0，但main在文档流后面，其覆盖在banner上方*/
     position: relative;
 }
-.slider{
+
+.slider {
     width: 730px;
     height: 453px;
     background-color: pink;
@@ -31,25 +34,18 @@
     float: left;
     position: relative;
 }
-.news{
-    float: right;
-    width: 248px;
-    /*减去增加的2px边框*/
-    height: 451px;
-    background-color: purple;
-    border: 1px solid #E4E4E4;
-    margin-top: 12px;
-}
+
 /*轮播图小圆点,绝对定位,左右居中，上下居下*/
-.slider .circle{
+.slider .circle {
     position: absolute;
     bottom: 8px;
-    left:50%;
+    left: 50%;
     margin-left: -66px;
 }
-.slider .circle li{
+
+.slider .circle li {
     /*宽高自己量*/
-    width:18px;
+    width: 18px;
     height: 18px;
     /*圆角*/
     border-radius: 50%;
@@ -57,23 +53,180 @@
     background: #3E3E3E;
     /*水平垂直居中*/
     text-align: center;
-    line-height:18px;
+    line-height: 18px;
     color: #FFFFFF;
     /*圆点间距*/
-    margin:0 2px;
+    margin: 0 2px;
     cursor: pointer;
 }
-.circle li.current{
+
+.circle li.current {
     background-color: #B61B1F;
 }
 
-.arrow-l,.arrow-r{
+/*左右箭头公有属性*/
+.arrow-l, .arrow-r {
     position: absolute;
-    width:28px;
+    width: 28px;
     height: 62px;
-    background-color: pink;
+    /*background-color: pink;*/
     /*绝对定位上下居中，-高度一半*/
-    top:50%;
+    top: 50%;
     margin-top: -31px;
+    color: #FFFFFF;
+    font: 500 18px/62px "宋体";
+    text-align: center;
+    /*半透明盒子*/
+    background: rgba(0, 0, 0, 0.3);
+}
 
+.arrow-l:hover, .arrow-r:hover {
+    /*滑过箭头透明度加深*/
+    background: rgba(0, 0, 0, 0.4);
+}
+
+/*左箭头单独样式*/
+.arrow-l {
+    left: 0;
+}
+
+/*右箭头单独样式*/
+.arrow-r {
+    right: 0;
+}
+
+.news {
+    float: right;
+    width: 248px;
+    /*减去增加的2px边框*/
+    height: 452px;
+    /*background-color: purple;*/
+    border: 1px solid #E4E4E4;
+    margin-top: 12px;
+}
+
+/*京东快报*/
+.jd-news {
+    height: 200px;
+    /*background-color: pink;*/
+    border-bottom: 1px dashed #E4E4E4;
+}
+
+/*生活服务*/
+.lifeservi {
+    height: 252px;
+    /*background-color: gold;*/
+    overflow: hidden;
+    /*有overflow: hidden;时给定宽度，照顾低版本浏览器*/
+    width: 248px;
+}
+
+.jd-news .dt, .lifeservi .dt {
+    height: 43px;
+    border-bottom: 1px dotted #E8E8E7;
+    line-height: 43px;
+}
+
+.jd-news .dt h3, .lifeservi .dt h3 {
+    float: left;
+    font: 14px/43px "微软雅黑";
+    color: #666666;
+    padding-left: 15px;
+}
+
+.jd-news .dt a {
+    float: right;
+    font: 13px/43px "宋体";
+    padding-right: 15px;
+}
+
+.jd-news .dd ul {
+    padding: 8px 0 0 15px;
+}
+
+.jd-news .dd ul li {
+    line-height: 28px;
+}
+
+.jd-news .dd ul li span {
+    font-weight: 700;
+    margin-right: 4px;
+}
+
+.lifeservi ul {
+    /*这里ul不能沿用父盒子的宽度，要指定比父盒子略宽，否则里面的li最后一个li即便加了浮动也无法并为一行
+    由父盒子lifeserv设置overflow:hiddent切掉多出的一点（约2px）*/
+    width: 252px;
+}
+
+.lifeservi .dd li {
+    float: left;
+    width: 62px;
+    height: 70px;
+    border: 1px solid #E4E4E4;
+    /*清除表格边线重叠造成的双倍边线加粗*/
+    margin-left: -1px;
+    margin-top: -1px;
+    text-align: center;
+}
+
+.lifeservi .dd {
+    /*上边线虚线*/
+    border-top: 1px dotted #E4E4E4;
+    overflow: hidden;
+    height:251px;
+}
+.lifeservi  li a{
+    display: block;
+    width: 62px;
+    height: 70px;
+    padding-top: 44px;
+    position: relative;
+}
+/*生活服务小图标，精灵图切割*/
+.lifeservi li a i{
+    position: absolute;
+    top:12px;
+    left: 18px;
+    width: 25px;
+    height: 25px;
+    background:url("../images/icon_lifeserv.png") no-repeat right top;
+}
+/*其余位置小图片，调整切片位置,只改两个后面略，可以用JS循环遍历操作*/
+.lifeservi li.lifeservi-icon2 a i{
+    background-position: right -25px;
+}
+.lifeservi li.lifeservi-icon3 a i{
+    background-position: right -50px;
+}
+/*“送”字图标*/
+.lifeservi .song{
+    background: url("../images/song.png") no-repeat 42px 3px;
+}
+
+
+/*双11某活动*/
+.todays{
+    /*处于大banner的超链接a下，给相对定位，同权值但文档流位置居下则压住上面的，会显示出来*/
+    position: relative;
+}
+.night-l{
+    float: left;
+    margin:10px 0 28px 0;
+}
+.night-r{
+    width: 1000px;
+    height: 160px;
+    /*background-color: purple;*/
+    float: right;
+    margin-top: 10px;
+}
+.night-r ul{
+    /*因为li给了1px的小间隙，为了防止li掉下来且ul内包含很长的li轮播图，给父ul多倍的宽度。*/
+    width:500%;
+}
+.night-r li{
+    float: left;
+    /*小间隙*/
+    margin-right:1px;
 }
