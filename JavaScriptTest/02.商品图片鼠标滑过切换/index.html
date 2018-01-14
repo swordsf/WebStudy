@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style type="text/css">
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        .item {
+            width: 360px;
+            height: 70px;
+            /*用paddding挤出空间给背景图（显示大图），padding下方防止列表展示缩略图*/
+            padding-top: 360px;
+            background: url("images/01big.jpg") no-repeat;
+            border: 1px solid #cccccc;
+            margin: 100px auto;
+            overflow: hidden;
+        }
+
+        .item ul {
+            list-style: none;
+            border-top: 1px solid #cccccc;
+            padding-left: 5px;
+        }
+
+        .item ul li {
+            float: left;
+            cursor: pointer;
+        }
+    </style>
+    <script type="text/javascript">
+        window.onload = function () {
+            var item = document.getElementById("item");
+//            改变图片(参数为li的ID和背景图片)
+            function changeimg(liid, bg) {
+                var li = document.getElementById(liid);
+                li.onmouseover = function () {
+                    item.style.backgroundImage =  bg;
+                }
+            }
+//        调用方法
+            changeimg("li01","url(images/01big.jpg)");
+            changeimg("li02","url(images/02big.jpg)");
+            changeimg("li03","url(images/03big.jpg)");
+            changeimg("li04","url(images/04big.jpg)");
+            changeimg("li05","url(images/05big.jpg)");
+
+        }
+    </script>
+</head>
+<body>
+<div class="item" id="item">
+    <ul>
+        <li id="li01"><img src="images/01.jpg" alt=""></li>
+        <li id="li02"><img src="images/02.jpg" alt=""></li>
+        <li id="li03"><img src="images/03.jpg" alt=""></li>
+        <li id="li04"><img src="images/04.jpg" alt=""></li>
+        <li id="li05"><img src="images/05.jpg" alt=""></li>
+    </ul>
+</div>
+</body>
+</html>
