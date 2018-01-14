@@ -9,8 +9,32 @@
     <link rel="stylesheet" href="css/index.css">
     <!--页面图标-->
     <link rel="shortcut icon" href="favicon.ico">
+    <script type="text/javascript">
+        window.onload = function () {
+            var mask = document.getElementById("mask");
+            var box = document.getElementById("box");
+//            点击登录，弹出遮罩及登录框
+            document.getElementById("login").onclick = function () {
+//              显示遮罩及登录框
+                mask.style.display = "block";
+                box.style.display = "block";
+            }
+//            关闭登录框
+            document.getElementById("close_login").onclick = function () {
+                mask.style.display = "none";
+                box.style.display = "none";
+            }
+        }
+    </script>
 </head>
 <body>
+<!--网页灰色背景遮罩-->
+<div class="mask" id="mask"></div>
+<!--遮罩上的div-->
+<div class="box" id="box">
+    <!--关闭-->
+    <span id="close_login">×</span>
+</div>
 <!--头部导航start,各页面都相同因此要写在base.css中-->
 <div class="shortcut">
     <!--头部导航的版心，使用的取版心公有样式-->
@@ -25,7 +49,7 @@
         <div class="fr">
             <ul>
                 <li>
-                    <a href="#">你好，请登录</a>&nbsp;&nbsp;
+                    <a href="Javascript:;" id="login">你好，请登录</a>&nbsp;&nbsp;
                     <a href="#" class="col-red">免费注册</a>
                 </li>
                 <!--短竖线-->
@@ -69,14 +93,22 @@
     </div>
 </div>
 <!--顶部banner-->
-<div class="topbanner">
+<div class="topbanner" id="topbanner">
     <!--banner的版心-->
     <div class="w bannerparent">
         <img src="images/topbanner.jpg" alt="">
         <!--在版心右上角的半透明关闭按钮图-->
-        <a href="javascript:;" class="close-banner"></a>
+        <a href="javascript:;" class="close-banner" id="close-banner"></a>
     </div>
 </div>
+<!--关闭banner脚本-->
+<script type="text/javascript">
+    var closebtn = document.getElementById("close-banner");
+    var topbanner = document.getElementById("topbanner");
+    closebtn.onclick = function () {
+        topbanner.style.display = "none";
+    }
+</script>
 <!--logo、搜索框与购物车部分,其上清除浮动，否则下面通用底部部分等内容会顶上来-->
 <div class="w clearfix">
     <div class="logo">
@@ -213,22 +245,66 @@
 <!--主体部分-->
 <div class="w main clearfix">
     <!--轮播图-->
-    <div class="slider">
-        <a href="#"><img src="images/slider1.jpg" alt=""></a>
+    <div class="slider" id="slide">
+        <a href="#"><img src="images/11.jpg" alt="" id="sliderimg"></a>
         <!--小圆点-->
         <ul class="circle">
-            <li class="current">1</li>
-            <li>2</li>
-            <li>3</li>
-            <li>4</li>
-            <li>5</li>
-            <li>6</li>
+            <li class="current" id="slider1">1</li>
+            <li id="slider2">2</li>
+            <li id="slider3">3</li>
+            <li id="slider4">4</li>
+            <li id="slider5">5</li>
+            <li id="slider6">6</li>
         </ul>
+        <!--轮播图切换脚本-->
+        <script>
+            var slider1 = document.getElementById("slider1");
+            var slider2 = document.getElementById("slider2");
+            var slider3 = document.getElementById("slider3");
+            var slider4 = document.getElementById("slider4");
+            var slider5 = document.getElementById("slider5");
+            var slider6 = document.getElementById("slider6");
+            var silderimg = document.getElementById("sliderimg");
+            slider1.onmousemove = function () {
+                sliderimg.src = "images/11.jpg";
+                //为选中slider添加选中效果，其余li去除选中类
+                slider1.className = "current"
+
+            }
+            slider2.onmousemove = function () {
+                sliderimg.src = "images/22.jpg";
+            }
+            slider3.onmousemove = function () {
+                sliderimg.src = "images/33.jpg";
+            }
+            slider4.onmousemove = function () {
+                sliderimg.src = "images/44.jpg";
+            }
+            slider5.onmousemove = function () {
+                sliderimg.src = "images/55.jpg";
+            }
+            slider6.onmousemove = function () {
+                sliderimg.src = "images/66.jpg";
+            }
+        </script>
         <!--轮播图左右透明箭头盒子,最优化方法两个箭头超链接存在与一个初始隐藏的盒子，hover的时候显示该盒子-->
-        <div class="arrow">
+        <div class="arrow" id="arr">
             <a href="javascript:;" class="arrow-l"><</a>
             <a href="javascript:;" class="arrow-r">></a>
         </div>
+        <script>
+            //获取轮播图div和箭头容器div
+            var slide = document.getElementById("slide");
+            var arr = document.getElementById("arr");
+            //鼠标滑过轮播图范围，显示左右三角
+            slide.onmousemove = function () {
+                arr.style.display = "block"
+            }
+            //鼠标滑出轮播图范围，隐藏左右三角
+            slide.onmouseout = function () {
+                arr.style.display = "none"
+            }
+        </script>
     </div>
     <!--京东新闻-->
     <div class="news">

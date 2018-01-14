@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<img src="01.jpg" id="img1">
+<script>
+    var img1=document.getElementById("img1");
+    img1.onmousemove= function () {
+        img1.src="02.jpg";
+//      或者
+//        img1.setAttribute("src","02.jpg");
+    }
+    img1.onmouseout= function () {
+        img1.src="01.jpg"
+    }
+</script>
+</body>
+</html>

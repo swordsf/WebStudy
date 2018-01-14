@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style type="text/css">
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background: url("images/1.jpg") top center;
+        }
+
+        .box {
+            height: 131px;
+            /*背景白色半透明*/
+            background: rgba(255, 255, 255, .3);
+            /*内容垂直水平居中,图较大则line-height就没有效果了*/
+            /*line-height:181px;*/
+            padding-top: 50px;
+            text-align: center;;
+        }
+
+        .box img {
+            cursor: pointer;
+        }
+    </style>
+    <!--切换背景图JS-->
+    <script>
+        //        页面加载完毕之后，采取执行函数体里面的js部分
+        window.onload = function () {
+            var pic1 = document.getElementById("pic1");
+            var pic2 = document.getElementById("pic2");
+            var pic3 = document.getElementById("pic3");
+            var pic4 = document.getElementById("pic4");
+            var pic5 = document.getElementById("pic5");
+//          切换背景图片(注意不要少了指定背景图的url属性)
+            pic1.onclick = function () {
+                document.body.style.backgroundImage = "url(images/1.jpg)";
+            }
+            pic2.onclick = function () {
+                document.body.style.backgroundImage = "url(images/2.jpg)";
+            }
+            pic3.onclick = function () {
+                document.body.style.backgroundImage = "url(images/3.jpg)";
+            }
+            pic4.onclick = function () {
+                document.body.style.backgroundImage = "url(images/4.jpg)";
+            }
+            pic5.onclick = function () {
+                document.body.style.backgroundImage = "url(images/5.jpg)";
+            }
+
+        }
+    </script>
+</head>
+<body>
+<div class="box">
+    <div class="imagebox">
+        <img src="images/1.jpg" alt="" width="150" id="pic1">
+        <img src="images/2.jpg" alt="" width="150" id="pic2">
+        <img src="images/3.jpg" alt="" width="150" id="pic3">
+        <img src="images/4.jpg" alt="" width="150" id="pic4">
+        <img src="images/5.jpg" alt="" width="150" id="pic5">
+    </div>
+</div>
+</body>
+</html>

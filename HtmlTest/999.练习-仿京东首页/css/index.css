@@ -63,7 +63,10 @@
 .circle li.current {
     background-color: #B61B1F;
 }
-
+.arrow{
+    /*左右箭头初始隐藏*/
+    display: none;
+}
 /*左右箭头公有属性*/
 .arrow-l, .arrow-r {
     position: absolute;

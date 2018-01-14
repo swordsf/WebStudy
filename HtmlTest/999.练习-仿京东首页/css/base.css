@@ -131,6 +131,45 @@ s, i, em {
     color: #C81623 !important;
 }
 
+/*页面整体遮罩*/
+.mask{
+    /*初始隐藏*/
+    display: none;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,.5);
+    /*fixed时刻针对当前窗口固定，因此拖拽进度条也不会改变fixed的位置。absolute则只是针对当前窗口，拉下去网页下面部分就不会被遮罩*/
+    position: fixed;
+    left:0;
+    top:0;
+    /*增加权重，压在其它定位元素之上*/
+    z-index: 999;
+}
+/*遮罩上的登录框*/
+.box{
+    /*初始隐藏*/
+    display: none;
+    width: 400px;
+    height: 250px;
+    background-color: #fff;
+    position: fixed;
+    /*定位的左右上下居中*/
+    top:50%;
+    left:50%;
+    margin-left: -200px;
+    margin-top: -125px;
+    /*权重要高于遮罩*/
+    z-index: 1000;
+}
+.box span{
+    position: absolute;
+    top:10px;
+    right: 10px;
+    width: 15px;
+    height: 15px;
+    font-size: 15px;
+    cursor: pointer;
+}
 /*--------头部导航开始---------*/
 .shortcut {
     height: 30px;
