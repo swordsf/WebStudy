@@ -50,8 +50,18 @@
 //            当选中文本框
             $("inputtxt").onfocus=function(){
                 var txt=$("inputtxt").value;
-                if (txt==="请输入内容.."){
-                    
+                if(txt==="请输入内容.."){
+                    $("inputtxt").value="";
+                    $("inputtxt").style.color="#333333";
+                }
+
+            }
+//            文本框失去焦点
+            $("inputtxt").onblur=function(){
+                var txt=$("inputtxt").value;
+                if (txt==""){
+                    $("inputtxt").value="请输入内容..";
+                    $("inputtxt").style.color="#cccccc";
                 }
             }
 

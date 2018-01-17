@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style type="text/css">
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        .box {
+            margin: 100px auto;
+            text-align: center;
+        }
+
+        span {
+            /*display: inline-block;保持inline元素的不换行，但又可以设置宽高*/
+            display: inline-block;
+            width: 150px;
+            height: 20px;
+            border: 1px solid #cccccc;
+            font-size: 12px;
+            line-height: 20px;
+            text-align: left;
+            padding-left: 20px;
+            background-color: #eee;
+            color: #999;
+        }
+
+        /*验证通过样式*/
+        .right {
+            background: url("images/right.png") no-repeat #DFFFDF 4px 3px;
+            color: #5EFF5E;
+            border: 1px solid #ACFFAC;
+        }
+
+        /*验证失败样式*/
+        .wrong {
+            background: url("images/wrong.png") no-repeat 4px 3px #FFDCD0;
+            color: #FF6B39;
+            border: 1px solid #FFAC91;
+        }
+    </style>
+    <script>
+        window.onload = function () {
+            function $(id) {
+                return document.getElementById(id);
+            }
+
+            //        失去焦点时验证
+            $("txt").onblur = function () {
+//                是否为空
+                if (this.value == "") {
+//                    更改span的文本和样式
+                    $("result").innerHTML = "内容不能为空！";
+                    $("result").className = "wrong";
+                }
+//                isNaN()返回true为非数字
+                else if (isNaN(this.value)) {
+                    $("result").innerHTML = "请输入数字！"
+                    $("result").className = "wrong";
+                }
+//                错误范围
+                else if (this.value > 150 || this.value < 0) {
+                    $("result").innerHTML = "请输入正确成绩范围！"
+                    $("result").className = "wrong";
+                }
+//                正常
+                else {
+                    $("result").innerHTML=("输入正确！");
+                    $("result").className="right";
+                }
+            }
+        }
+
+
+    </script>
+</head>
+<body>
+<div class="box">
+    数学成绩:<input type="text" id="txt"> <span id="result">请输入数学成绩</span>
+</div>
+</body>
+</html>
