@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script>
+        window.onload= function () {
+            function $(id){
+                return document.getElementById(id);
+            }
+            $("focused").focus();//默认获取焦点
+            $("select").onmouseover=function(){
+//                鼠标滑过，选中输入框所有内容
+                this.select();
+            }
+        }
+    </script>
+</head>
+<body>
+默认获取焦点:<input id="focused" type="text">
+鼠标滑过获取焦点:<input id="select" type="text"value="66666">
+</body>
+</html>

@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script>
+        window.onload= function () {
+            function $(id){
+                return document.getElementById(id);
+            }
+//            获取所有input标签
+            var inputs=$("bottom").getElementsByTagName("input");
+//           选择函数
+            function check(flag){
+                for(let i=0;i<inputs.length;i++){
+                    inputs[i].checked=flag;
+                }
+            }
+//          全选
+            $("all").onclick=function(){
+                    check(true);
+            }
+//          取消选择
+            $("cancleall").onclick= function () {
+                check(false);
+            }
+//          反选
+            $("reverse").onclick= function () {
+                for(let i=0;i<inputs.length;i++){
+                    inputs[i].checked===true? inputs[i].checked=false: inputs[i].checked=true;
+                }
+            }
+
+        }
+    </script>
+</head>
+<body>
+    <div id="top">
+        <button id="all">全选</button>
+        <button id="cancleall">取消选中</button>
+        <button id="reverse">反选</button>
+    </div>
+<div id="bottom">
+    <ul>
+        <li>选项:<input type="checkbox"></li>
+        <li>选项:<input type="checkbox"></li>
+        <li>选项:<input type="checkbox"></li>
+        <li>选项:<input type="checkbox"></li>
+        <li>选项:<input type="checkbox"></li>
+        <li>选项:<input type="checkbox"></li>
+        <li>选项:<input type="checkbox"></li>
+        <li>选项:<input type="checkbox"></li>
+        <li>选项:<input type="checkbox"></li>
+    </ul>
+</div>
+</body>
+</html>

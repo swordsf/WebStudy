@@ -331,7 +331,8 @@
             <div class="dt">
                 <h3>生活服务</h3>
             </div>
-            <div class="dd">
+            <!--指定id="iconsprite"，获取该id元素下的所有i元素-->
+            <div class="dd" id="iconsprite">
                 <ul>
                     <!--超链接标签添加一个“送”图标背景图-->
                     <li class="lifeservi-icon1"><a href="#" class="song">
@@ -433,6 +434,14 @@
         </div>
     </div>
 </div>
+<!--遍历生活服务精灵图的js脚本-->
+<script>
+//    <!--先找到生活服务中所有的i标签-->
+    var iis=document.getElementById("iconsprite").getElementsByTagName("i");
+    for(let i=0;i<iis.length;i++){
+        iis[i].style.background="url(images/icon_lifeserv.png)no-repeat right "+(i*-25)+"px";
+    }
+</script>
 <!--双11某活动 清除浮动-->
 <div class="w todays clearfix">
     <!--惊喜夜-->

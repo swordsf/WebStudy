@@ -4,31 +4,13 @@
     <meta charset="UTF-8">
     <title>Title</title>
     <script type="text/javascript">
-        var a = 666;
-        console.log("a=" + a);
-        console.log(typeof a);
-        //乘方 3*3=9
-        console.log(Math.pow(3,2));
-        //开根号
-        console.log(Math.sqrt(81));
-//        输入框
-        var inputtxt=prompt("请随便输入！");
-        alert(inputtxt);
-        for(var i = 3 ; i < 20 ; i = i + 2){
-            			if(i % 3 == 2){
-                				i = i + 1;
-                		}else{
-                				i = i + 2;
-                			}
-            			console.log(i);
-        }
-        helloWorld();
-        function helloWorld(){
-            console.log("Hello World!")
-        }
+        var a = [1, 2, 3];
+        console.log(a.join(""));//123
+        var s="xiaomiao";
+        console.log(s.split(""));//["x", "i", "a", "o", "m", "i", "a", "o"]
     </script>
     <style type="text/css">
-        .box1{
+        .box1 {
             padding-top: 60px;
             background-color: red;
         }

@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style type="text/css">
+        .box{
+            width: 400px;
+            margin:100px auto;
+            text-align: center;
+            border:1px solid #cccccc;
+        }
+        .bottom div{
+            /*先隐藏所有盒子*/
+            width: 100%;
+            height:300px;
+            background-color: gold;
+            display: none;
+        }
+        .bottom .show{
+            display: block;
+        }
+        .current{
+            background-color: skyblue;
+        }
+    </style>
+    <script>
+        window.onload= function () {
+//            获取所有标签按钮与对应的标签盒子
+            new array
+            var btns=document.getElementById("buttons").getElementsByTagName("button");
+            var divs=document.getElementById("divs").getElementsByTagName("div");
+            for(let i=0;i<btns.length;i++){
+//                为所有按钮添加点击事件之前为每个按钮对象添加一个index属性记录该按钮索引，JQuery中已存在，原生要手写
+                btns[i].index=i;
+                btns[i].onclick=function(){
+//                    先遍历清除/隐藏掉所有按钮和标签盒子样式
+                    for(let i=0;i<btns.length;i++){
+                        btns[i].className="";
+                        divs[i].className="";
+                    }
+//                    随后为当前按钮指定样式，为当前按钮存储索引对应的标签盒子指定显示样式
+                    this.className="current";
+                    divs[this.index].className="show"
+
+                }
+            }
+        }
+    </script>
+</head>
+<body>
+<div class="box">
+    <div class="top" id="buttons">
+        <button class="current">标签一</button>
+        <button>标签二</button>
+        <button>标签三</button>
+        <button>标签四</button>
+        <button>标签五</button>
+    </div>
+    <div class="bottom" id="divs">
+        <div class="show">一号盒子</div>
+        <div>二号盒子</div>
+        <div>三号盒子</div>
+        <div>四号盒子</div>
+        <div>五号盒子</div>
+    </div>
+</div>
+</body>
+</html>
