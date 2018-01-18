@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <title>Title</title>
     <style>
-        div{
+        div {
             width: 100px;
             height: 100px;
             background-color: purple;
@@ -12,22 +12,70 @@
         }
     </style>
     <script>
-        window.onload= function () {
-            var dom=document.getElementsByClassName("demo");
-            alert(dom.length);
+        window.onload = function () {
+//            getElementsByClassName主流浏览器都兼容，但是IE678不兼容，无法使用
+//            因此我们封装自己的getClass方法来兼容主流和IE浏览器
+//            var dom=document.getElementsByClassName("demo");
+//            alert(dom.length);
+
+//            获取指定ID元素后面的包含指定类名的标签
+            function getClass(classname, id) {
+//                如果浏览器支持getElementsByClassName，则直接返回(先判断正常浏览器)
+                if (document.getElementsByClassName) {
+//                    如有id
+                    if (id) {
+                        var eleid = document.getElementById(id);
+                        return eleid.getElementsByClassName(classname);
+                    }
+//                    没id
+                    return document.getElementsByClassName(classname);
+
+                }
+//                如果浏览器不支持(IE678)
+                if (id) {
+                    var eleid = document.getElementById(id);
+                    var doms = eleid.getElementsByTagName("*")
+                }
+                else {
+//                    将所有标签取出来
+                    var doms = document.getElementsByTagName("*")
+                }
+                var arr = [];//arr数组存放满足classname的元素
+//                alert(doms.length);
+//                遍历取出所有元素，找到类名符合的标签存入数组 最后返回数组
+                for (var i = 0; i < doms.length; i++) {
+//                    将各元素类名以空格分割得到类名数组
+                    var names = doms[i].className.split(" ");
+                    for (var j = 0; i < names.length; j++) {
+                        if (names[j] == classname) {
+                            arr.push(doms[i]);
+                        }
+                    }
+                }
+                return arr;
+            }
+
+            console.log(getClass("demo").length);//4  主流和IE浏览器都正常获取
+            console.log(getClass("demo","box").length);
+            var demo = getClass("demo","box");
+            for (var i = 0; i < demo.length; i++) {
+                demo[i].style.backgroundColor = "gold";
+            }
         }
     </script>
 </head>
 <body>
 <div class="demo"></div>
 <div></div>
+<div id="box">
+    <div></div>
+    <div class="demo"></div>
+    <div></div>
+    <div></div>
+    <div class="demo"></div>
+</div>
 <div></div>
-<div class="demo"></div>
-<div></div>
-<div></div>
-<div class="demo"></div>
-<div></div>
-<div></div>
+<div class="test demo"></div>
 <div></div>
 </body>
 </html>
