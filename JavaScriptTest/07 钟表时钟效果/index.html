@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        .clock{
+            width: 600px;
+            height: 600px;
+            margin: 50px auto;
+            background:url("images/clock.jpg") no-repeat;
+            position: relative;
+        }
+        /*固定时钟内的div中心点*/
+        .clock div{
+            /*与父亲宽度100%并且背景图都center center实现居中*/
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            top:0;
+            left:0;
+        }
+        .h{
+            background: url("images/hour.png") no-repeat center center;
+        }
+        .m{
+            background: url("images/minute.png") no-repeat center center;
+        }
+        .s{
+            background: url("images/second.png") no-repeat center center;
+        }
+    </style>
+    <script>
+        window.onload= function () {
+            var hour=document.getElementById("hour");
+            var minute=document.getElementById("minute");
+            var second=document.getElementById("second");
+            var
+                    h= 0,
+                    m= 0,
+                    s= 0,
+                    ms=0;
+            //每毫秒执行一次计时器
+            setInterval(function () {
+                var date=new Date();//得到当前时间
+                //当前毫秒
+                ms=date.getMilliseconds();
+                //当前秒，如1.3s
+                s=date.getSeconds()+ms/1000;
+                //当前分钟，如45.6
+                m=date.getMinutes()+s/60;
+                //当前小时,%取余变为12小时制
+                h=date.getHours()%12+m/60;
+
+                //旋转角度 秒针一圈  360 °一共有 60 秒 每秒  6 ° 现在是s秒  CSS3样式，webkit有兼容性问题，谷歌和苹果支持
+                second.style.webkitTransform="rotate("+s*6+"deg)";
+                //webkitTransform--变化  rotate--旋转  deg--度
+                //分针一圈  360 °一共有 60 分钟 每分钟  6 °
+                minute.style.webkitTransform="rotate("+m*6+"deg)";
+                //360 °时针一共有12个 每小时30 °
+                hour.style.webkitTransform="rotate("+h*30+"deg)";
+
+            },100);
+        }
+    </script>
+</head>
+<body>
+    <div class="clock">
+        <div class="h" id="hour"></div>
+        <div class="m" id="minute"></div>
+        <div class="s" id="second"></div>
+    </div>
+</body>
+</html>

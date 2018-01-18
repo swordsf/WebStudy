@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script>
+        window.onload= function () {
+            var btn=document.getElementById("btn");
+            var count=5;//倒计时秒数
+            var timer//存储计时器
+            btn.onclick= function () {
+                clearInterval(timer);//先清除之前的定时器
+                this.disabled=true//禁用按钮
+                var that=this;//缓存当前button
+                timer=setInterval(sendMessage,1000);
+                function sendMessage() {
+                    //this.innerHTML = "还剩余"+count+"秒";这里直接用this的话，this指的是调用它的计时器timer
+                    if(count>=0){
+                        console.log(count);
+                        that.innerHTML="还剩余"+count+"秒";
+                        count--;
+                    }
+                    else{
+                        //清空计时器
+                        clearInterval(timer);
+                        that.disabled=false;
+                        that.innerHTML="点击重新发送";
+                        count=5;
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body>
+<input type="text"><button id="btn">点击发送短信</button>
+</body>
+</html>
