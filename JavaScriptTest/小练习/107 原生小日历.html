@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        .box {
+            margin: 100px auto;
+            width: 150px;
+            height: 180px;
+            background-color: #369;
+            text-align: center;
+        }
+
+        .box p {text-align: center;
+            line-height: 60px;
+            font-size:12px;
+            color: #fff;
+        }
+        .box span{
+            display: block;
+            width: 75px;
+            height: 75px;
+            margin: 0 auto;
+            font-size:50px;
+            color: #000;
+            background-color: yellowgreen;
+            line-height: 75px;
+        }
+    </style>
+    <script>
+        window.onload= function () {
+            var box=document.getElementById("box");
+            var boys=box.children;
+            //日期数组，getDay星期对应0~6 星期日~星期一。date.getMonth()对应0~11
+            var arr=["星期日","星期一","星期二","星期三","星期四","星期五","星期六"];
+            var date=new Date();
+            boys[0].innerHTML=date.getFullYear()+"年"+date.getMonth()+1+"月"+date.getDate()+"日"+" "+arr[date.getDay()];
+            //今天日期
+            boys[1].innerHTML=date.getDate();
+        }
+    </script>
+</head>
+<body>
+<div class="box" id="box">
+    <p>11</p>
+    <span>11</span>
+</div>
+</body>
+</html>

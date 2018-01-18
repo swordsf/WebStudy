@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        #time {
+            font-size: 30px;
+            color: red;
+            text-align: center;
+        }
+    </style>
+    <script>
+        window.onload = function () {
+            var time = document.getElementById("time");
+//            自定义终止时间(注意日期和分秒中间有空格)
+            var enddate = new Date("2019/01/01 00:00:00");
+            //开启定时器
+            setInterval(clock,1000);
+            function clock() {
+                //每次获取当前时间
+                var nowtime = new Date();
+                //时间戳相减除1000得间隔秒数
+                var second = parseInt((enddate.getTime() - nowtime.getTime()) / 1000);
+                var d = parseInt(second / 3600 / 24);//间隔天数
+                var h = parseInt(second / 3600 % 24);//小时数
+                var m = parseInt(second / 60 % 60);//分钟数
+                var s = parseInt(second % 60);//当前秒
+
+                d < 10 ? "0" + d : d;
+                h < 10 ? "0" + h : h;
+                m < 10 ? "0" + m : m;
+                s < 10 ? "0" + s : s;
+
+                time.innerHTML="距离2019年1月1日还有:"+d+"天 "+h+"小时 "+m+"分钟 "+s+"秒 ";
+            }
+        }
+    </script>
+</head>
+<body>
+<div id="time">
+
+</div>
+</body>
+</html>

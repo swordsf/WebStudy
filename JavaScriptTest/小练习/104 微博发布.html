@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        .box {
+            width: 600px;
+            /*height: 200px; 不要高或者给auto自动撑高*/
+            border: 1px solid black;
+            margin: 100px auto;
+        }
+
+        textarea {
+            width: 400px;
+            /*不可用户拖动*/
+            resize: none;
+        }
+
+        ul {
+            list-style: none;
+        }
+
+        .box li {
+            width: 450px;
+            line-height: 30px;
+            border-bottom: 1px dashed #cccccc;
+            margin-left: 80px;
+        }
+
+        .box li a {
+            float: right;
+        }
+    </style>
+    <script>
+        window.onload = function () {
+            var btn = document.getElementById("send");
+            var detail = document.getElementById("detail");
+            var ul = document.getElementById("ul");
+//            发布
+            btn.onclick = function () {
+//                新建li
+//                alert(detail.value);
+                var newli = document.createElement("li");
+                newli.innerHTML = detail.value + "<a href = 'javascript:;'>删除</a>";
+//                新消息插入到列表的最上方(如果是第一条消息还是使用appendChild)
+                var lis = ul.children;
+                if (lis.length == 0) {
+//                    第一次发布
+                    ul.appendChild(newli);
+                }
+                else {
+//                    ul下已经有内容，追加在最上的内容之前
+                    ul.insertBefore(newli, ul.children[0]);
+                }
+                detail.value = "";//清空文本框
+//              注册删除
+                deltxt();
+            }
+            function  deltxt(){
+                //            注册删除方法
+                var as = document.getElementsByTagName("a");
+                for (var i = 0; i < as.length; i++) {
+                    as[i].onclick = function () {
+//                        alert(111);
+//                        this.parentNode.style.display = "none";//删除该li或者
+                        ul.removeChild(this.parentNode);
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body>
+<div class="box">
+    微博发布:<textarea name="" id="detail" cols="30" rows="10"></textarea>
+    <button id="send">发布</button>
+    <!--依然还是先布局调样式，之后删除，JS动态添加-->
+    <ul id="ul">
+        <!--<li>111</li>-->
+        <!--<li>111</li>-->
+    </ul>
+</div>
+</body>
+</html>
