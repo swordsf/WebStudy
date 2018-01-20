@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+        /*包容图片，负责移动图片*/
+        ul{
+            list-style: none;
+            /*为了容下里面的5张图片*/
+            width: 1000%;
+            position: absolute;
+            left: 0;
+            top:0;
+        }
+        img{
+            /*取出图片间3px间隙*/
+            display: block;
+        }
+        ul li{
+            float: left;
+        }
+        #box{
+            width: 520px;
+            height: 280px;
+            margin: 100px auto;
+            position: relative;
+            /*overflow: hidden;*/
+        }
+        /*左右箭头*/
+        #arr{
+            /*箭头区域初始隐藏*/
+            display: none;
+        }
+        #arr span{
+            width: 40px;
+            height: 40px;
+            position: absolute;
+            /*绝对定位上下居中，-高度一半*/
+            top: 50%;
+            margin-top: -20px;
+            color: #FFFFFF;
+            font: 500 18px/62px "宋体";
+            text-align: center;
+            line-height: 40px;
+            /*半透明盒子*/
+            background: rgba(0, 0, 0, 0.3);
+            cursor: pointer;
+        }
+        /*右箭头要靠右*/
+        #arr #right{
+            right: 0px;
+        }
+    </style>
+    <script>
+        window.onload= function () {
+            function $(id){
+                return document.getElementById(id);
+            }
+            var box=$("box");//图片盒子
+            var ul=$("imgs");//ul容器
+            var arr=$("arr");//箭头容器
+            var target=0;//目标位置
+            var leader=0;//根据目标位置变化，得出每次移动距离，计时器完成移动
+            box.onmouseover= function () {
+                //显示箭头容器
+                arr.style.display="block";
+            }
+            box.onmouseout= function () {
+                arr.style.display="none";
+            }
+            //左箭头点击
+            $("left").onclick=function(){
+                target+=520;
+            }
+            //左箭头点击
+            $("right").onclick=function(){
+                target-=520;
+            }
+            //缓动动画
+            setInterval(function () {
+                if(target>=0){
+                    target=0;
+                }
+                //如果达到最后一张展示的位置，即520*（5-1）=2080
+                else if (target<=-2080){
+                    target=-2080;
+                }
+                leader=leader+(target-leader)/10;
+                //移动
+                ul.style.left=leader+"px";
+//                console.log(111);
+            },30)
+        }
+    </script>
+</head>
+<body>
+<div id="box" class="all">
+    <div class="ad">
+        <ul id="imgs">
+            <li><img src="images/1.jpg" alt=""></li>
+            <li><img src="images/2.jpg" alt=""></li>
+            <li><img src="images/3.jpg" alt=""></li>
+            <li><img src="images/4.jpg" alt=""></li>
+            <li><img src="images/5.jpg" alt=""></li>
+        </ul>
+    </div>
+    <!--左右箭头-->
+    <div id="arr">
+        <span id="left"><</span>
+        <span id="right">></span>
+    </div>
+</div>
+</body>
+</html>
