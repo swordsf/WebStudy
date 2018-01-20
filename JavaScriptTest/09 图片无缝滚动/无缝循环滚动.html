@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+/*ul下包含的N个li内包含的img,上下两个图片之间默认会产生3px的间隙，通过设置图片样式--->img {vertical-align: top; }
+(或display:block)来取消图片底部3像素距离。li左浮动变为一排也会消失，但是如果想上下图片滚动的话此间隙就必须消除。*/
+        /*img {vertical-align: top; }  !*取消图片底部3像素距离*!*/
+        .box {
+            /*图片300*200，一次显示两张图片，因此轮播图盒子宽600，高200，都出的overflow:hidden切掉*/
+            width: 600px;
+            height: 200px;
+            margin: 100px auto;
+            background-color: pink;
+            position: relative;
+            overflow: hidden;
+        }
+        /*ul内包含所有图片共6张，宽度至少应为1800px，此处给予ul 4倍父亲宽度即2400px，宁可多给点也不能少给，否则图片会掉下去
+        通过ul盒子的绝对定位来移动图片
+        ul 是盒子移动的，如果ul的left值大于等于4张图片的宽度，就快速复原为0 。
+        （这样由同样的图片迅速切换到同样图片，让你看起来是连续的）
+        */
+        ul {
+            list-style: none;
+            width: 400%;
+            position: absolute;
+            left:0;
+            top:0;
+        }
+
+        .box ul li {
+            float: left;
+        }
+    </style>
+</head>
+<body>
+<div class="box" id="scroll">
+    <ul>
+        <li><img src="images/01.jpg" alt=""></li>
+        <li><img src="images/02.jpg" alt=""></li>
+        <li><img src="images/03.jpg" alt=""></li>
+        <li><img src="images/04.jpg" alt=""></li>
+        <li><img src="images/01.jpg" alt=""></li>
+        <li><img src="images/02.jpg" alt=""></li>
+    </ul>
+</div>
+<script>
+    var scroll=document.getElementById("scroll");
+    var ul=scroll.children[0];//获取滚动图盒子下的ul
+    var timer=null;//计时器
+    var num=0;//控制left值
+    //开启滚动
+    timer=setInterval(autoPlay,10);
+    //滚动方法
+    function autoPlay(){
+        num--;
+        console.log(num);
+        //left值刚刚切换到与第1张一样的第5张图片时候马上恢复到第1张的left=0
+        num<-1200?num=0:num;
+        ul.style.left=num+"px";
+    }
+    //鼠标放在scroll上停止滚动
+    scroll.onmouseover= function () {
+        clearInterval(timer);
+    }
+    //鼠标离开scroll上继续滚动，num值沿用
+    scroll.onmouseout= function () {
+        timer=setInterval(autoPlay,10);
+    }
+</script>
+</body>
+</html>

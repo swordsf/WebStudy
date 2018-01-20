@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        img {
+            display: block;
+        / / 清除图片底部图片间的3px缝隙
+        }
+
+        .slider {
+            width: 490px;
+            height: 170px;
+            margin: 100px auto;
+            position: relative;
+        }
+
+        /*轮播图片部分*/
+        .inner {
+            width: 100%;
+            height: 100%;
+            /*background-color: pink;*/
+            position: relative;
+            /*添加溢出隐藏则只显示一张图片*/
+            /*overflow: hidden;*/
+        }
+
+        .inner ul {
+            list-style: none;
+            /*存放所有图片并负责图片的移动，宽度要保证能放得下，宁多勿少*/
+            width: 1000%;
+            position: absolute;
+            left: 0;
+            top: 0;
+        }
+
+        .inner li {
+            float: left;
+        }
+
+        /*图片数字标记部分*/
+        ol{
+            list-style: none;
+            /*绝对定位 底部居中*/
+            position: absolute;
+            left:50%;
+            bottom:0;
+            margin-left: -70px;
+        }
+        ol li{
+            float: left;
+            width: 18px;
+            height: 18px;
+            background-color: #fff;
+            /*间隔*/
+            margin-right: 10px;
+            text-align: center;
+            line-height: 18px;
+            cursor: pointer;
+        }
+        .current{
+            background-color: gold;
+        }
+    </style>
+</head>
+<body>
+<div class="slider" id="slider">
+    <!--轮播图部分-->
+    <div class="inner">
+        <ul>
+            <li><img src="images/01.jpg" alt=""></li>
+            <li><img src="images/02.jpg" alt=""></li>
+            <li><img src="images/03.jpg" alt=""></li>
+            <li><img src="images/04.jpg" alt=""></li>
+            <li><img src="images/05.jpg" alt=""></li>
+        </ul>
+    </div>
+    <!--图片标记数字部分-->
+    <ol>
+        <li class="current">1</li>
+        <li>2</li>
+        <li>3</li>
+        <li>4</li>
+        <li>5</li>
+    </ol>
+</div>
+<script>
+    //获取最外层slider，通过获得其子元素查找其它需要的标签
+    var slider=document.getElementById("slider");
+    var ul=slider.children[0].children[0];
+    var ol=slider.children[1];
+    //获取所有标签数字li
+    var olLis=ol.children;
+    //轮播图每次移动距离
+    var leader= 0;
+    //轮播图ul目标位置
+    var target=0;
+    //遍历所有编号li，为其赋鼠标滑过更换选中样式事件
+    for(var i=0;i<olLis.length;i++){
+        //缓存每个li的索引号,用以计算移动的目标位置，索引号*一个图片的宽度
+        olLis[i].index=i;
+        olLis[i].onmouseover= function () {
+            //先清除所有标号li上的样式
+            for(var j=0;j<olLis.length;j++){
+                olLis[j].className=""
+            }
+            //为自己赋选中样式
+            this.className="current"
+            //ul.style.left=-this.index*490+"px";//这是直接切换图片位置
+            //图片缓动,先计算目标位置
+            target=-this.index*490;
+        }
+    }
+    //开启计时器
+    setInterval(function () {
+        //计算缓动每次移动距离(缓动固定公式)
+        leader=leader+(target-leader)/10;
+        console.log(leader);
+        //缓动
+        ul.style.left=leader+"px";
+    },30)
+</script>
+</body>
+</html>

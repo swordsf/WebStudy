@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        .box {
+            position: absolute;
+            left: 0;
+            top: 100px;
+            width: 100px;
+            height: 100px;
+            background-color: pink;
+        }
+    </style>
+</head>
+<body>
+<button id="btn">点击开始</button>
+<div class="box" id="box"></div>
+<script>
+
+    var timer;//计时器
+    var btn = document.getElementById("btn");
+    var box = document.getElementById("box");
+    //缓动原理，每次移动距离随距离缩短而减少
+    var leader = 0;//每次移动距离，步长
+    target = 1000;//目标位置
+    btn.onclick = function () {
+        timer = setInterval(function () {
+            leader = leader + (target - leader) / 10;//下一次移动距离,每次移动剩余总距离的十分之一
+            box.style.left = leader + "px";
+            console.log(box.style.left);
+            if (box.style.left==target+"px"){
+                clearInterval(timer);
+            }
+        }, 30)//计时器的执行间隔控制速度
+
+    }
+
+</script>
+</body>
+</html>

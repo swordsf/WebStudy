@@ -3,8 +3,82 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
+    <style>
+        div{
+            width: 100px;
+            height: 100px;
+            background-color: pink;
+            margin: 15px;
+        }
+    </style>
+    <script>
+        //获取类元素兼容性方法
+        function  getClass(classname){
+            //判断当前浏览器是否支持getElementsByClassName
+            if(document.getElementsByClassName){
+                return document.getElementsByClassName(classname);
+            }
+            //如不支持 IE678
+            var arr=[];//返回查找到的结果数组
+            //遍历所有盒子
+            var doms=document.getElementById("*");
+            for(var i=0;i<doms.length;i++){
+                //分割类名，并转为数组,如["cname1","cname2"]
+                var cnames=doms[i].className.split(" ");
+                //遍历类名数组
+                for(var j=0;j<cnames.length;j++){
+                    if (cnames[j]==classname){
+                        arr.push(cnames[j]);
+                    }
+                }
+            }
+            return arr;//返回查找结果
+        }
+        //$获取id、类、标签元素方法 $("#id") $(".class") $("div")
+        function $(str){
+            //获取首字母
+            var s=str.charAt(0);
+            //首字母后字符串
+            var ss=str.substring(1);
+            console.log("首字母="+s+"尾部字符串="+ss);
+            switch (s){
+                //ID选择器
+                case "#":
+                    return document.getElementById(ss);
+                    break;
+                //类名选择器
+                case ".":
+                    return getClass(ss);
+                    break;
+                //标签选择器(注意参数是str)
+                default:
+                    return document.getElementsByTagName(str);
+            }
+        }
+        //注意写在head中的原生JS一定要写window.onload，否则找不到标签元素！
+        window.onload= function () {
+            //测试
+            var box1s=$(".box1");
+            console.log(box1s);
+            for(var i=0;i<box1s.length;i++){
+                box1s[i].style.backgroundColor="red";
+            }
+            $("#first").style.backgroundColor="purple";
+            $("#last").style.backgroundColor="gold";
+        }
+
+    </script>
 </head>
 <body>
-
+<div id="box">
+    <div id="first"></div>
+    <div></div>
+    <div class="box1"></div>
+    <div class="box1"></div>
+    <div class="box2"></div>
+    <div></div>
+    <div></div>
+    <div id="last"></div>
+</div>
 </body>
 </html>

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        .box{
+            position: absolute;
+            left:0;
+            top:100px;
+            width: 100px;
+            height: 100px;
+            background-color: pink;
+        }
+    </style>
+</head>
+<body>
+<button id="btn">点击开始</button>
+<div class="box" id="box"></div>
+<script>
+    var distance=0;
+    var timer;//计时器
+    var btn=document.getElementById("btn");
+    var box=document.getElementById("box");
+    btn.onclick= function () {
+        timer=setInterval(function(){
+            distance++;//下一次移动距离
+            //判断条件不能用box.style.left 无效？
+            if (distance<1000){
+                box.style.left=distance+"px";
+            }
+            else {
+                clearInterval(timer);
+            }
+        },10)//计时器的执行间隔控制速度
+
+    }
+
+</script>
+</body>
+</html>
