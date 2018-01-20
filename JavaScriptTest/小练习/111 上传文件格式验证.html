@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<script>
+    window.onload= function () {
+        function $(id){return document.getElementById(id);}
+        $("file").onchange= function () {
+            //alert(this.value);//打印文件路径名测试
+            var filepath=this.value;
+            //取文件名最后一个.后缀文本并转为大写
+            var format=filepath.substring(filepath.lastIndexOf(".")).toUpperCase();
+            if(format==".JPG"||format==".PNG"){
+                this.nextSibling.innerHTML="图片格式正确";
+            }
+            else{
+                this.nextSibling.innerHTML="图片格式错误";
+            }
+        }
+    }
+</script>
+<body>
+<!--文件域-->
+<input type="file" name="" id="file"><span></span>
+</body>
+</html>

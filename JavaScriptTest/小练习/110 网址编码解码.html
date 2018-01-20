@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script>
+        /*我们经常会把一些网址送入到后台。但是后台再处理的时候不认识比如：换行啊 ？等特殊符号
+         所以我们要实现编码，然后再传到后台。*/
+        var url="http://www.baidu.com?name=jack";
+        console.log(encodeURIComponent(url));//对网址进行编码
+        var encodeUrl=encodeURIComponent(url);
+        console.log(decodeURIComponent(url));//输出解码后的网址
+    </script>
+</head>
+<body>
+
+</body>
+</html>

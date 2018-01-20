@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script>
+        window.onload= function () {
+            var demo = document.getElementById("demo");
+            var count = 5;
+            var speed = 1000;
+            setTimeout(goIndex,speed);//1秒后取执行goIndex方法，仅执行一次
+            function goIndex() {
+// arguments.callee返回的是正在执行的函数。 也是在函数体内使用。
+// 在使用函数递归调用时推荐使用arguments.callee代替函数名本身。 返回的是正在执行的函数。
+// 也是在函数体内使用。 在使用函数递归调用时推荐使用arguments.callee代替函数名本身。
+//            alert(arguments.callee);
+                demo.innerHTML = "<a href='http://www.baidu.com'>将在" + count + "秒后跳转到百度</a>";
+                count--;
+                if (count<=0){
+                    //跳转页面
+                    window.location.href="http://www.baidu.com";
+                }
+                else{
+                    //时间未到，递归调用，自己调用自己(利用settimeout模拟实现setinterval的效果)
+                    setTimeout(goIndex,speed);
+                }
+            }
+        }
+
+    </script>
+</head>
+<body>
+<div id="demo"></div>
+</body>
+</html>
