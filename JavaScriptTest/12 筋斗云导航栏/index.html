@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+        body{
+            background-color: #000000;
+        }
+        ul{list-style: none}
+        .nav{
+            width: 800px;
+            height: 42px;
+            /*wifi图片做背景图，左右居右，上下居中 纯白背景色*/
+            background: url("images/rss.png") no-repeat right center #FFFFFF;
+            margin: 100px auto;
+            border-radius: 5px;
+            position: relative;
+        }
+        .cloud{
+            width: 83px;
+            height: 42px;
+            background:url("images/cloud.gif") no-repeat;
+            position: absolute;
+            left: 0;
+            top:0;
+        }
+        .nav li{
+            float: left;
+            width: 83px;
+            height: 42px;
+            line-height: 42px;
+            text-align: center;
+            color: #000;
+            cursor: pointer;
+        }
+        /*云彩层级要在ul之上，因此在.cloud之后同为ul设置绝对定位，无z-index
+        的情况下后面写的ul显示在顶层，盖在云彩span上方*/
+        .nav ul{
+            position: absolute;
+            left: 0;
+            top:0;
+        }
+    </style>
+    <script>
+        window.onload= function () {
+            function $(id){return document.getElementById(id);}
+            //云彩
+            var cloud=document.getElementById("cloud");
+            //导航容器
+            var nav=document.getElementById("nav");
+            //导航列表项
+            var lis=nav.children[1].children;
+            for(var i=0;i<lis.length;i++){
+                lis[i].index=i;//存储移动倍率
+                lis[i].onmouseover= function () {
+                    //滑动改变云彩目标left值
+                    target=this.index*83;
+                }
+            }
+            //缓动公式
+            var target = 0,leader=0;
+            setInterval(function () {
+                leader=leader+(target-leader)/10;
+                cloud.style.left=leader+"px";
+            },10)
+        }
+    </script>
+</head>
+<body>
+<div class="nav" id="nav">
+    <!--云彩-->
+    <span class="cloud" id="cloud"></span>
+    <ul>
+        <li>首页新闻</li>
+        <li>师资力量</li>
+        <li>活动策划</li>
+        <li>企业文化</li>
+        <li>招聘信息</li>
+        <li>公司简介</li>
+        <li>上海校区</li>
+        <li>广州校区</li>
+
+    </ul>
+</div>
+</body>
+</html>

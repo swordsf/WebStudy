@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        #image {
+            width: 100px;
+            height: 100px;
+            position: absolute;
+            left: 0;
+            top: 0;
+        }
+    </style>
+    <script>
+        window.onload = function () {
+            var image = document.getElementById("image");
+            //文档点击事件
+            document.onclick = function (event) {
+                //兼容写法
+                var event = event || window.event;
+                //event.clientX/Y是“光标”相对于该网页的水平/垂直位置（当前可见区域）
+                //减去图片自己实际宽度的一半，得到鼠标点击以图片中心点移动后的坐标
+                targetX=event.clientX-image.offsetWidth/2;
+                targetY=event.clientY-image.offsetHeight/2;
+            }
+            //缓动（X Y两个方向）
+            var
+                    leaderX= 0,
+                    leaderY= 0,
+                    targetX= 0,
+                    targetY=0;
+            setInterval(function () {
+                    leaderX=leaderX+(targetX-leaderX)/10;
+                    leaderY=leaderY+(targetY-leaderY)/10;
+                    image.style.left=leaderX+"px";
+                    image.style.top=leaderY+"px";
+            },10)
+        }
+    </script>
+</head>
+<body>
+<img src="images/img.jpg" alt="" id="image">
+</body>
+</html>

@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        .box {
+            /*外层盒子与小图片大小一致*/
+            width: 350px;
+            height: 350px;
+            margin: 100px;
+            border: 1px solid #cccccc;
+            /*使big盒子可以绝对定位*/
+            position: relative;
+        }
+
+        .big {
+            /*通过绝对定位，将大图盒子定位于box容器右侧边缘*/
+            width: 800px;
+            height: 800px;
+            position: absolute;
+            top: 0; /*与box容器同高*/
+            left: 360px; /*比box容器稍靠右*/
+            border: 1px solid red;
+            /*超出隐藏，移动大图片的绝对定位展示图片指定部分需要*/
+            overflow: hidden;
+            /*初始隐藏*/
+            display: none;
+        }
+
+        .small {
+            /*使遮罩绝对定位，显示在小图上*/
+            position: relative;
+        }
+
+        .mask {
+            width: 100px;
+            height: 100px;
+            /*遮罩颜色黄色 半透明*/
+            background: rgba(255, 255, 0, 0.4);
+            position: absolute;
+            left: 0;
+            top: 0;
+            /*鼠标十字花移动样式*/
+            cursor: move;
+            /*遮罩块初始隐藏*/
+            display: none;
+        }
+
+        .big img {
+            /*控制大图片相对于big块的显示（切图）位置，与切精灵图原理一致*/
+            position: absolute;
+            left: 0;
+            top: 0;
+        }
+    </style>
+    <script>
+        window.onload = function () {
+            //获取外层box
+            var fdj = document.getElementById("fdj");
+            //获取小盒子及小盒子内的遮罩
+            var small = fdj.children[0];
+            var mask = small.children[1];
+            //获取大盒子及大盒子里面的图片
+            var big = fdj.children[1];
+            var bigImage = big.children[0];
+            //鼠标经过显示遮罩即大图
+            small.onmousemove = function (event) {
+                var x = 0, y = 0;
+                //兼容事件对象写法
+                var event = event || window.event;
+                mask.style.display = "block";
+                big.style.display = "block";
+                //保存鼠标在small盒子内的坐标，然后再将坐标赋值给遮罩
+                //event.clientX/Y是“光标”相对于该网页的水平/垂直位置（当前可见区域）
+                //offsetParent返回该对象的父级 （带有定位） 不一定是亲的爸爸
+                //this.offsetParent.offsetLeft返回遮罩距离上级盒子（最近的带有定位的，此即box盒子距body）左边的距离
+                //(也可写为fdj.offsetLeft)
+                //offsetWidth返回遮罩div实际全部的宽度
+                //最后得到的x,y就是遮罩div中心点要移动到的坐标(left top)
+                x = event.clientX - this.offsetParent.offsetLeft - mask.offsetWidth / 2;//在某个盒子内的坐标
+                y = event.clientY - this.offsetParent.offsetTop - mask.offsetHeight / 2;
+                console.log("X=" + x + "Y=" + y);
+                //x不超过小图片的左右范围，y不超过上下范围
+                if (x < 0) {
+                    x = 0;
+                }
+                //超过小div的全宽减去遮罩的全宽（遮罩位于水平最右侧）
+                else if (x > small.offsetWidth - mask.offsetWidth) {
+                    x = small.offsetWidth - mask.offsetWidth;
+                }
+                if (y < 0) {
+                    y = 0;
+                }
+                else if (y > small.offsetHeight - mask.offsetHeight) {
+                    y = small.offsetHeight - mask.offsetHeight;
+                }
+                //遮罩移动
+                mask.style.left = x + "px";
+                mask.style.top = y + "px";
+                //大图的切片移动
+                //移动距离为 大图盒子宽度（高度）/小图盒子宽度（高度）再乘以负的倍数X Y
+                bigImage.style.left=-x*big.offsetWidth/small.offsetWidth+"px";
+                bigImage.style.top=-y*big.offsetHeight/small.offsetHeight+"px";
+
+            }
+            //离开隐藏
+            small.onmouseout = function () {
+                mask.style.display = "none";
+                big.style.display = "none";
+            }
+        }
+    </script>
+</head>
+<body>
+<div class="box" id="fdj">
+    <!--小盒子,存放小商品图及遮罩-->
+    <div class="small">
+        <img src="images/001.jpg" alt="">
+        <div class="mask"></div>
+    </div>
+    <!--大盒子 挨着小盒子 存放商品大图-->
+    <div class="big">
+        <img src="images/0001.jpg" alt="">
+    </div>
+</div>
+</body>
+</html>
