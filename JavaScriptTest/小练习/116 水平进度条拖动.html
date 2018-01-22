@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        /*进度条容器*/
+        .scrollBar {
+            width: 400px;
+            height: 8px;
+            background-color: #cccccc;
+            margin: 100px;
+            /*相对定位是为了取滑块的this.offsetLeft;即滑块距离滑动条的左侧距离*/
+            position: relative;
+
+        }
+
+        /*滑块*/
+        .bar {
+            width: 10px;
+            height: 22px;
+            background-color: #369;
+            position: absolute;
+            left: 0;
+            top: -7px;
+            cursor: pointer;
+        }
+
+        /*进度遮罩,通过改变遮罩盒子的宽度实现进度条增减*/
+        .mask {
+            width: 0;
+            height: 100%;
+            background-color: #369;
+            position: absolute;
+            left: 0;
+            top: 0;
+        }
+    </style>
+    <script>
+        window.onload = function () {
+            var scrollBar = document.getElementById("scrollBar");
+            //获取滑块和遮罩
+            var bar = scrollBar.children[0];
+            var mask = scrollBar.children[1];
+            //进度文本
+            var msg = document.getElementById("msg");
+            //document.onmousemove鼠标对文档拖动要写在滑块的down按下事件中
+            bar.onmousedown = function (event) {
+                var event = event || window.event;
+                //按下时滑块已移动的距离
+                var leftVal = event.clientX - this.offsetLeft;
+                //缓存滑块bar
+                var that = this;
+                //鼠标的拖动事件
+                document.onmousemove = function (event) {
+                    var event = event || window.event;
+                    //滑块随鼠标移动而移动(event.clientX-this.offsetLeft)
+                    that.style.left = event.clientX - leftVal + "px";
+                    //限定滑块移动范围 将"xxpx"转换为整数xx
+                    var val = parseInt(that.style.left);
+                    console.log(val);
+                    if (val < 0) {
+                        that.style.left = 0;
+                    } else if (val > 400) {
+                        that.style.left = "400px";
+                    }
+                    //遮罩进度(宽度)跟进
+                    mask.style.width=that.style.left;
+                    //计算进度百分比
+                    msg.innerHTML="当前进度"+parseInt(parseInt(that.style.left)/400*100)+"%"
+                    //防止选择拖动,清除选中的内容（不加此句快速左右拖动会出现抬起鼠标时仍可拖动的bug）
+                    window.getSelection ? window.getSelection().removeAllRanges() : document.selection.empty();
+                }
+                //鼠标抬起，不做任何拖动操作
+                document.onmouseup= function () {
+                    document.onmousemove=null;
+                }
+
+            }
+        }
+    </script>
+</head>
+<body>
+<div class="scrollBar" id="scrollBar">
+    <!--进度条滑块-->
+    <div class="bar"></div>
+    <!--进度遮罩-->
+    <div class="mask"></div>
+</div>
+<!--进度提示文本-->
+<div id="msg"></div>
+</body>
+</html>
