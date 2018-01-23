@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+        /*这句将ul li分段*/
+        html,body{
+            width: 100%;
+            height: 100%;
+        }
+        ul, ol {
+            list-style: none;
+        }
+
+        #ul {
+            width: 100%;
+            height: 100%;
+        }
+        #ul li{
+            width: 100%;
+            height: 100%;
+        }
+        /*定位在body右上角*/
+        #ol {
+            position: fixed;
+            right: 20px;
+            top: 20px;
+        }
+        #ol li{
+            width: 50px;
+            height: 50px;
+            border: 1px solid #000000;
+        }
+    </style>
+    <script src="my.js"></script>
+    <script>
+        window.onload= function () {
+            var ulBox=$("ul");
+            var ulBoxLi=ulBox.children;
+            var olBox=$("ol");
+            var olBoxLi=olBox.children;
+            //背景色数组
+            var bgColor=["pink","purple","orange","blue","green"];
+            //缓动参数定义
+            var leader= 0,target= 0,timer=null;
+            //遍历赋背景色和点击事件
+            for(var i=0;i<ulBoxLi.length;i++){
+                ulBoxLi[i].style.backgroundColor=bgColor[i];
+                olBoxLi[i].style.backgroundColor=bgColor[i];
+                //缓存当前索引号
+                olBoxLi[i].index=i;
+                olBoxLi[i].onclick= function () {
+                    clearInterval(timer);
+                    //核心语句，计算目标值
+                    target=ulBoxLi[this.index].offsetTop;
+                    //缓动
+                    timer=setInterval(function () {
+                        leader=leader+(target-leader)/10;
+                        //屏幕滑动
+                        window.scrollTo(0,leader);
+                    },20)
+                }
+            }
+            //到达指定位置之后，当用户手动滚动屏幕时取消计时器
+            window.onscroll= function () {
+                if(Math.abs(target-leader)>0.1){
+                    clearInterval(timer);
+                }
+            }
+        }
+    </script>
+</head>
+<body>
+<!--背景-->
+<ul id="ul">
+    <li>首页</li>
+    <li>关注</li>
+    <li>动态</li>
+    <li>风格</li>
+    <li>作品</li>
+</ul>
+<!--导航-->
+<ol id="ol">
+    <li>首页</li>
+    <li>关注</li>
+    <li>动态</li>
+    <li>风格</li>
+    <li>作品</li>
+</ol>
+</body>
+</html>

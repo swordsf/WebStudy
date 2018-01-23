@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script>
+        //clientWidth   返回的是可视区大小    浏览器内部的大小
+        //window.screen.width   返回的是我们电脑的分辨率跟浏览器没有关系
+        function client(){
+            //ie9+最新浏览器
+            if(window.innerWidth!=null){
+                return {
+                    width:window.innerWidth,
+                    height:window.innerHeight
+                }
+            }
+            //标准浏览器
+            else if(document.compatMode==="CSS1Comat"){
+                return {
+                    width:document.documentElement.clientWidth,
+                    height:document.documentElement.clientHeight
+                }
+            }
+            //怪异浏览器（没有声明DTD）
+            return{
+                width:document.body.clientWidth,
+                height:document.body.clientHeight
+            }
+        }
+        document.write(client().width+":"+client().height);
+    </script>
+</head>
+<body>
+
+</body>
+</html>

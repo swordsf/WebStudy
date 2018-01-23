@@ -1,10 +1,10 @@
 /**
  * Created by Administrator on 2018/1/22.
  */
-//封装了scrollTop的兼容写法和
-function $(id) {
-    return document.getElementById(id);
-}
+//封装了scrollTop的兼容写法、获取ID元素和显示隐藏元素方法的封装
+function $(id) {return document.getElementById(id);}
+function show(obj) { obj.style.display = "block";}
+function hide(obj) { obj.style.display = "none";}
 function scroll() {
     if (window.pageYOffset != null)  //  ie9+ 和其他浏览器
     {
