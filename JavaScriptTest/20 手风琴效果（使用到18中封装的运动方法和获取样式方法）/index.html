@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        ul{list-style: none}
+        *{margin:0; padding:0;}
+        div{
+            /*应该width: 1200px;，但是li切换时右侧会出现少许留白，减宽或者最后一个li右浮动抹去*/
+            width: 1150px;
+            height: 400px;
+            margin:50px auto;
+            border:1px solid red;
+            overflow: hidden;
+        }
+        div li {
+            /*240px是左侧纯色留白宽度*/
+            width: 240px;
+            height: 400px;
+            /*border:1px solid red;*/
+            /*margin-left: -1px;*/
+            float: left;
+        }
+        div ul {
+            /*ul的宽度只要大于div宽度即可，li展示大图和压缩宽度的其余4小图总宽度要等于div定义宽度1200*/
+            width: 1300px;
+        }
+    </style>
+</head>
+<body>
+<div>
+    <ul>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+    </ul>
+</div>
+</body>
+</html>
+<script src="animate.js"></script>
+<script>
+    var box = document.getElementsByTagName("div")[0];
+    var lis = box.children[0].children;
+    for(var i=0;i<lis.length;i++)
+    {
+        lis[i].style.backgroundImage = "url(images/"+(i+1)+".jpg)";
+        lis[i].onmouseover = function() {
+            for(var i=0;i<lis.length;i++)
+            {
+                //先将所有li压缩为100，共500px，
+                animate(lis[i],{width:100});
+            }
+            //将当前li宽度置为div总宽1200-400=800
+            animate(this,{width:800});
+        }
+        //鼠标移开li,所有li恢复240宽
+        lis[i].onmouseout = function(){
+            for(var i=0;i<lis.length;i++)
+            {
+                animate(lis[i],{width:240});
+            }
+        }
+    }
+</script>
