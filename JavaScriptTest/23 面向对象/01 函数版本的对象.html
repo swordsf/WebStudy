@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+
+</body>
+</html>
+<script>
+    //var obj = {}只有一个对象，我们如果需要很多就需要用到函数
+    //所谓"构造函数"，其实就是一个普通函数，但是内部使用了this变量。
+    //对构造函数使用new运算符，就能生成实例，并且this变量会绑定在实例对象上。
+    function Person(name,age) {//这就是一个JS中的构造函数，也是一个普通函数，为了与普通函数区别，第一个字母大写
+        this.name = name;
+        this.age = age;
+        this.showName = function() {//这种公有方法要使用prototype原型类似继承的方式呈现，见例03
+            alert("我的名字是" + name);
+        }
+        this.showAge = function() {
+            alert("我的年龄是" + age);
+        }
+    }
+    var demo=new Person("小柯基",1);
+    console.log(demo.name);
+    console.log(demo["age"]);//这是调用属性的另一种写法
+    demo.showName();
+</script>
