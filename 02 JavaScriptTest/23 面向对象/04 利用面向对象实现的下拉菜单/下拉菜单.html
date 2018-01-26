@@ -71,4 +71,8 @@
 	}
 	var list = new List("list");  // 实例化了一个对象叫list
 	list.init();//执行初始化方法
+	//对象的__proto__等同于Array.prototype
+	var a=[];
+	console.log(a.__proto__===Array.prototype);//true
+
 </script>
